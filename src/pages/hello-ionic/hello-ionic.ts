@@ -1,3 +1,5 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { VideoPlayer } from '@ionic-native/video-player';
 // import { Http } from '@angular/http';
 // import {
 //     SpeechRecognition,
@@ -5,6 +7,7 @@
 //     SpeechRecognitionListeningOptionsIOS
 // } from '@ionic-native/speech-recognition';
 import { NavController, NavParams } from 'ionic-angular';
+
 // import { NgZone } from '@angular/core';
 // import { ToastController } from 'ionic-angular/umd';
 import { Component } from '@angular/core';
@@ -16,13 +19,12 @@ import { Component } from '@angular/core';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-
   // speechList: Array<string> = [];
   // textmessage : string;
   // androidOptions: SpeechRecognitionListeningOptionsAndroid;
   // iosOptions: SpeechRecognitionListeningOptionsIOS;
   // client = new ApiAiClient({accessToken: '908415e3087c4a66afe961857aca8099'});
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public videoPlayer: VideoPlayer, public dom : DomSanitizer) {
     // Check feature available
 
     // Start the recognition process
@@ -54,7 +56,9 @@ export class HelloIonicPage {
     // )
   }
 
-
+  playVideo(){
+    return (this.dom.bypassSecurityTrustResourceUrl('https://www.youtube.com/watch?v=0jamhGf-8ww'));
+  }
   // RecordSpeech(){
   //   this.androidOptions = {
   //   prompt: 'Speak into your phone!'

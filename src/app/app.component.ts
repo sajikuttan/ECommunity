@@ -4,6 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { Login } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
+import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +30,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: Login },
+      { title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'My First List', component: ListPage }
     ];
   }
@@ -39,6 +40,9 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      // if(this.rootPage == Login){
+      //   this.menu.swipeEnable(false);
+      // }
       this.splashScreen.hide();
     });
   }

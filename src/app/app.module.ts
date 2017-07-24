@@ -7,8 +7,10 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { Login } from '../pages/login/login';
+import { HttpModule } from '@angular/http'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
+import { VideoPlayer } from '@ionic-native/video-player';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
@@ -21,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -35,6 +38,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     SpeechRecognition,
+    VideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
