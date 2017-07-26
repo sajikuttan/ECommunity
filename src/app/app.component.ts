@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { Login } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 
@@ -17,7 +16,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = Login;
+  rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -30,8 +29,8 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Dashboard', component: HelloIonicPage },
+      { title: 'Languages', component: ListPage }
     ];
   }
 
@@ -40,9 +39,6 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      // if(this.rootPage == Login){
-      //   this.menu.swipeEnable(false);
-      // }
       this.splashScreen.hide();
     });
   }
