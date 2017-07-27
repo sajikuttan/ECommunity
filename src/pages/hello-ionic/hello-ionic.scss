@@ -1,22 +1,21 @@
 page-hello-ionic {
     .progress-outer {
-        width: 96%;
-        margin: 10px 2%;
-        padding: 3px;
         text-align: center;
         background-color: #f4f4f4;
         border: 1px solid #dcdcdc;
         color: #fff;
-        border-radius: 20px;
+        border-radius: 5px;
     }
- 
+    .left{
+        float:left;
+    }
     .progress-inner {
-        min-width: 15%;
+        width: 0;
+        height: 3px;
         white-space: nowrap;
         overflow: hidden;
         padding: 5px;
         border-radius: 20px;
         background-color: map-get($colors, primary);
-        height: 5px;
     }
 }

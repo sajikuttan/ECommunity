@@ -14,20 +14,21 @@
     <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
         <ion-grid>
           <ion-row>
-            <ion-col col-1>
+            <ion-col col-2>
               {{item.technology}}
             </ion-col>
-            <ion-col col-9>
+            <ion-col col-8>
               <div class="progress-outer">
                     <div class="progress-inner" [style.width]="progress + '%'">
                     </div>
                 </div>
             </ion-col>
             <ion-col col-2>
-              0%
+               0%
             </ion-col>
           </ion-row>
         </ion-grid>
     </button>
+      <button ion-button (click)="navigateToList()">More...</button>
   </ion-list>
 </ion-content>

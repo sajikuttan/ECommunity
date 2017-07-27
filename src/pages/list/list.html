@@ -8,9 +8,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
-        {{item.technology}}
-    </button>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="language" color="primary">
+      <ion-segment-button value="selected-language">
+        Selected
+      </ion-segment-button>
+      <ion-segment-button value="not-selected-language">
+        Not Selected
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <div [ngSwitch]="language">
+  <ion-list *ngSwitchCase="'selected-language'" >
+      <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
+          {{item.technology}}
+      </button>
   </ion-list>
+
+  <ion-list *ngSwitchCase="'not-selected-language'">
+      <button *ngFor="let item of technologies2; let i=index" ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-11>
+                {{item.technology}}
+              </ion-col>
+              <ion-col col-1>
+                <ion-icon name="add-circle"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </button>
+  </ion-list>
+</div>
 </ion-content>
