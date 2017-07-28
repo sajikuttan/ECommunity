@@ -1,3 +1,21 @@
 page-list {
-
+    .progress-outer {
+        text-align: center;
+        background-color: #f4f4f4;
+        border: 1px solid #dcdcdc;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .left{
+        float:left;
+    }
+    .progress-inner {
+        width: 0;
+        height: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 5px;
+        border-radius: 20px;
+        background-color: map-get($colors, primary);
+    }
 }

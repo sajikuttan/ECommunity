@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -9,9 +10,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ItemDetailsPage {
   selectedItem: any;
+  videoUrl: SafeResourceUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private domSanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
+    this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/aw5pMBeOWM0');
     this.selectedItem = navParams.get('item');
   }
 }

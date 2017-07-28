@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
-
 import { ItemDetailsPage } from '../item-details/item-details';
-
+import { AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -17,9 +15,10 @@ export class ListPage {
   technologies = [];
   technologies2 = [];
   language : any;
+  isValid = false;
   data = ['PHP','JAVA','MYSQL'];
   data2 = ['ANGULAR','TYPESCRIPT','ASP','TESTING','CPP','C','PYTHON','RUBY'];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController) {
     this.language = "selected-language";
     // this.http.get('http://localhost/ElearnApp/technology.php')
     // .map(res => res.json())
@@ -44,8 +43,32 @@ export class ListPage {
             technology: this.data2[i]
         });
     }
+    
   }
-
+  doConfirm(technology) {
+    let confirm = this.alerCtrl.create({
+      title: 'ADD Course',
+      message: 'Do You Want To Add '+ technology + ' Course?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  deleteItem($event, item){
+    this.isValid = true;
+  }
   itemTapped(event, item) {
     this.navCtrl.push(ItemDetailsPage, {
       item: item
