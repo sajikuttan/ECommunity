@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Friends</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="friend" color="primary">
+      <ion-segment-button value="chats">
+        Chats
+      </ion-segment-button>
+      <ion-segment-button value="friends">
+        Friends
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"></ion-searchbar>
+  <div [ngSwitch]="friend">
+    <ion-list *ngSwitchCase="'chats'" >
+        <ion-item *ngFor="let chat of chats; let i=index">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <span >{{chat}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'friends'">
+        <ion-item *ngFor="let friend of friends; let i=index">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <span >{{friend}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

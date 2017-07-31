@@ -12,9 +12,9 @@ import 'rxjs/add/operator/map';
 export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-  technologies = [];
+  public technologies = [];
   technologies2 = [];
-  language : any;
+  language : string;
   isValid = false;
   data = ['PHP','JAVA','MYSQL'];
   data2 = ['ANGULAR','TYPESCRIPT','ASP','TESTING','CPP','C','PYTHON','RUBY'];
@@ -44,6 +44,9 @@ export class ListPage {
         });
     }
     
+  }
+  technologyData(){
+    return this.technologies;
   }
   doConfirm(technology) {
     let confirm = this.alerCtrl.create({

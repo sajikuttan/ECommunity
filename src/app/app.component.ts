@@ -4,6 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { ListPage } from '../pages/list/list';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { Friends } from '../pages/friends/friends';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,7 +15,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
@@ -30,7 +30,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },
-      { title: 'Languages', component: ListPage }
+      { title: 'Languages', component: ListPage },
+      { title: 'Friends', component: Friends }
     ];
   }
 

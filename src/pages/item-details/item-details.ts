@@ -14,7 +14,7 @@ export class ItemDetailsPage {
 
   constructor(private domSanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/aw5pMBeOWM0');
+    this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/2KOxZtLxdK4');
     this.selectedItem = navParams.get('item');
   }
 }
