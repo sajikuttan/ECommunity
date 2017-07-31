@@ -30,40 +30,39 @@
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"></ion-searchbar>
   <div [ngSwitch]="language">
     <!--<input type="checkbox" (click)="deleteItem($event, item)">-->
-  <ion-list *ngSwitchCase="'selected-language'" >
-      <ion-item *ngFor="let item of technologies; let i=index" (click)="itemTapped($event, item)">
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4>
-              <span >{{item.technology}}</span>
-            </ion-col>
-            <ion-col col-6>
-              <div class="progress-outer">
-                    <div class="progress-inner" [style.width]="progress + '%'">
-                    </div>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-              0%
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-  </ion-list>
-
-  <ion-list *ngSwitchCase="'not-selected-language'">
-      <ion-item *ngFor="let item of technologies2; let i=index">
+    <ion-list *ngSwitchCase="'selected-language'" >
+        <ion-item *ngFor="let item of technologies; let i=index" (click)="itemTapped($event, item)">
           <ion-grid>
             <ion-row>
-              <ion-col col-11>
-                {{item.technology}}
+              <ion-col col-4>
+                <span >{{item.technology}}</span>
               </ion-col>
-              <ion-col col-1>
-                <ion-icon name="add-circle" (click)="doConfirm(item.technology)"></ion-icon>
+              <ion-col col-6>
+                <div class="progress-outer">
+                      <div class="progress-inner" [style.width]="progress + '%'">
+                      </div>
+                  </div>
+              </ion-col>
+              <ion-col col-2>
+                0%
               </ion-col>
             </ion-row>
           </ion-grid>
-      </ion-item>
-  </ion-list>
-</div>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'not-selected-language'">
+        <ion-item *ngFor="let item of technologies2; let i=index">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-11>
+                  {{item.technology}}
+                </ion-col>
+                <ion-col col-1>
+                  <ion-icon name="add-circle" (click)="doConfirm(item.technology)"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

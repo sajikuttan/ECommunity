@@ -5,10 +5,9 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { ListPage } from '../pages/list/list';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { Friends } from '../pages/friends/friends';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Project } from '../pages/project/project';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,6 +30,7 @@ export class MyApp {
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },
       { title: 'Languages', component: ListPage },
+      { title: 'Project', component: Project },
       { title: 'Friends', component: Friends }
     ];
   }

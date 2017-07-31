@@ -9,7 +9,7 @@ import { ListPage } from '../list/list';
 
 @Component({
   selector: 'page-hello-ionic',
-  templateUrl: 'hello-ionic.html',
+  templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
   shownGroup = null;
@@ -25,10 +25,11 @@ export class HelloIonicPage {
     //       });
     //     }
     //   });
-    for(var i =0;i<this.technologies.length;i++){
+    var data = ['PHP','JAVA','MYSQL'];
+    for(var i =0;i < data.length;i++){
         this.technologies.push({
             id: i,
-            technology: this.technologies[i]
+            technology: data[i]
         });
     }
   }

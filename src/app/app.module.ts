@@ -7,6 +7,7 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { Login } from '../pages/login/login';
+import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
 
 import { HttpModule } from '@angular/http'; 
@@ -22,7 +23,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ItemDetailsPage,
     Login,
     ListPage,
-    Friends
+    Friends,
+    Project
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ItemDetailsPage,
     Login,
     ListPage,
-    Friends
+    Friends,
+    Project
   ],
   providers: [
     StatusBar,

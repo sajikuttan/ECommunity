@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Project</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+<ion-toolbar>
+    <ion-segment [(ngModel)]="project_field" color="primary">
+      <ion-segment-button value="development">
+        Development
+      </ion-segment-button>
+      <ion-segment-button value="testing">
+        Testing
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <div [ngSwitch]="project_field">
+    <ion-list *ngSwitchCase="'development'" >
+      <ion-item>
+        <ion-label>Project Type</ion-label>
+        <ion-select [(ngModel)]="dev_project_type">
+          <ion-option value="mobile_app">Mobile App</ion-option>
+          <ion-option value="web_app">Web App</ion-option>
+          <ion-option value="website">Website</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item (click)="projectDetails()">
+        E-learn Mobile App.
+        <p>Create a elearning mobile app for all standards of science ,commerce and arts</p>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'testing'">
+      <ion-item>
+        <ion-label>Project Type</ion-label>
+        <ion-select [(ngModel)]="test_project_type">
+          <ion-option value="mobile_app">Mobile App</ion-option>
+          <ion-option value="web_app">Web App</ion-option>
+          <ion-option value="website">Website</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
