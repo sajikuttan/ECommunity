@@ -1,5 +1,7 @@
+import { ProjectDetails } from '../project-details/project-details';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 /**
  * Generated class for the Project page.
  *
@@ -16,7 +18,7 @@ export class Project {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.project_field = 'development';
   }
-  projectDetails(){
-    // this.navCtrl.push(Project);
+  projectDetails(){   
+    this.navCtrl.push(ProjectDetails);                                                                                                                                                                                 
   }
 }

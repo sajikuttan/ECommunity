@@ -7,28 +7,48 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Languages
-    </ion-list-header>
-    <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
-        <ion-grid>
-          <ion-row>
-            <ion-col col-2>
-              {{item.technology}}
-            </ion-col>
-            <ion-col col-8>
-              <div class="progress-outer">
-                    <div class="progress-inner" [style.width]="progress + '%'">
-                    </div>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-               0%
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-    </button>
-      <button ion-button (click)="navigateToList()">More...</button>
-  </ion-list>
+  <ion-item>
+    <ion-list>
+      <ion-list-header>
+        Languages
+      </ion-list-header>
+      <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2>
+                {{item.technology}}
+              </ion-col>
+              <ion-col col-8>
+                <div class="progress-outer">
+                      <div class="progress-inner" [style.width]="progress + '%'">
+                      </div>
+                  </div>
+              </ion-col>
+              <ion-col col-2>
+                0%
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </button>
+        <p (click)="navigateToList()">More...</p>
+    </ion-list>
+  </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card text-center (click)="navigateToFriends()">
+            <ion-icon name="people"></ion-icon>
+            <h4>Friends</h4>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card text-center (click)="navigateToProjects()">
+            <ion-icon name="briefcase"></ion-icon>
+            <h4>Projects</h4>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-content>

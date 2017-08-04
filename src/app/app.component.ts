@@ -10,14 +10,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
-
+  public my = 12;
   constructor(
     public platform: Platform,
     public menu: MenuController,

@@ -12,12 +12,12 @@ import 'rxjs/add/operator/map';
 export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-  public technologies = [];
-  technologies2 = [];
   language : string;
   isValid = false;
-  data = ['PHP','JAVA','MYSQL'];
+  public data = ['PHP','JAVA','MYSQL'];
   data2 = ['ANGULAR','TYPESCRIPT','ASP','TESTING','CPP','C','PYTHON','RUBY'];
+  technologies = [];
+  technologies2 = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController) {
     this.language = "selected-language";
     // this.http.get('http://localhost/ElearnApp/technology.php')

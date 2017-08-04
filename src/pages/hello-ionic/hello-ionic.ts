@@ -1,3 +1,5 @@
+import { Project } from '../project/project';
+import { Friends } from '../friends/friends';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -14,7 +16,7 @@ import { ListPage } from '../list/list';
 export class HelloIonicPage {
   shownGroup = null;
   technologies = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     // this.http.get('http://localhost/ElearnApp/technology.php')
     // .map(res => res.json())
     // .subscribe(data => {
@@ -25,6 +27,7 @@ export class HelloIonicPage {
     //       });
     //     }
     //   });
+
     var data = ['PHP','JAVA','MYSQL'];
     for(var i =0;i < data.length;i++){
         this.technologies.push({
@@ -46,6 +49,12 @@ export class HelloIonicPage {
           this.shownGroup = group;
       }
   };
+  navigateToFriends(){
+      this.navCtrl.push(Friends);
+  }
+  navigateToProjects(){
+      this.navCtrl.push(Project);
+  }
   isGroupShown(group) {
       return this.shownGroup === group;
   };

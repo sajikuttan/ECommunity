@@ -1,3 +1,4 @@
+import { ProjectDetails } from '../pages/project-details/project-details';
 import { MyApp } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -24,7 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Login,
     ListPage,
     Friends,
-    Project
+    Project,
+    ProjectDetails
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Login,
     ListPage,
     Friends,
-    Project
+    Project,
+    ProjectDetails
   ],
   providers: [
     StatusBar,
