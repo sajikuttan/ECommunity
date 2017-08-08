@@ -13,8 +13,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'project-details.html',
 })
 export class ProjectDetails {
-
+  project_title;
+  project_type;
+  project_app_type;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.project_title = navParams.get('title');
+    this.project_type = navParams.get('type');
+    this.project_app_type = navParams.get('app_type');
   }
 
   ionViewDidLoad() {

@@ -17,6 +17,8 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
+  chats = [];
+  friends = [];
   public my = 12;
   constructor(
     public platform: Platform,
@@ -25,7 +27,8 @@ export class MyApp {
     public splashScreen: SplashScreen
   ) {
     this.initializeApp();
-
+    this.chats = ['Jhon Doe','Jhon Doe','Jhon Doe'];;
+    this.friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
     // set our app's pages
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },

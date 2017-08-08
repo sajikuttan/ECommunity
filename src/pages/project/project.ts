@@ -15,10 +15,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Project {
   project_field : string;
+  public static project_dev = 0;
+  public static project_test = 1;
+  public static project_mobile;
+  public static project_website;
+  public static project_web_app;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.project_field = 'development';
+    Project.project_mobile = 0;
+    Project.project_web_app = 1;
+    Project.project_website = 2;
   }
-  projectDetails(){   
-    this.navCtrl.push(ProjectDetails);                                                                                                                                                                                 
+  projectDetails(title,type,app_type){   
+    this.navCtrl.push(ProjectDetails,{
+      title : title,
+      type : type,
+      app_type : app_type
+    });                                                                                                                                                                                 
   }
 }

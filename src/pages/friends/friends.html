@@ -17,7 +17,7 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="true"></ion-searchbar>
   <div [ngSwitch]="friend">
     <ion-list *ngSwitchCase="'chats'" >
         <ion-item *ngFor="let chat of chats; let i=index">
