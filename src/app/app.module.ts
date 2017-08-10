@@ -1,3 +1,4 @@
+import { Data } from '../pipes/data';
 import { ProjectDetails } from '../pages/project-details/project-details';
 import { MyApp } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +13,6 @@ import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
 
 import { HttpModule } from '@angular/http'; 
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { VideoPlayer } from '@ionic-native/video-player';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     Friends,
     Project,
-    ProjectDetails
+    ProjectDetails,
+    Data
   ],
   imports: [
     BrowserModule,

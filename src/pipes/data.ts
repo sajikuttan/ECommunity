@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 /**
  * Generated class for the Data pipe.
  *
@@ -10,13 +10,16 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'data',
 })
 export class Data implements PipeTransform {
+  videoUrl: SafeResourceUrl;
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: string, ...args) {
-    return value.toLowerCase();
+  constructor(private domSanitizer: DomSanitizer) {
+
   }
-  public display(){
-    return "called";
+  
+  transform(value: string, ...args) {
+    console.log(this.domSanitizer.bypassSecurityTrustResourceUrl(value));
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(value);
   }
 }

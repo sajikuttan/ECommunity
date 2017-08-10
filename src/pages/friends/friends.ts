@@ -1,3 +1,4 @@
+import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,10 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class Friends {
   friend : string;
   myInput : string = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams,private myApp : MyApp) {
+  public chats = ['Jhon Doe','Jhon Doe','Jhon Doe'];
+  public friends = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.friend = "chats";
-    MyApp.chats;
-    MyApp.friends;
+    this.chats;
+    this.friends = MyApp.friends;
   }
 
   ionViewDidLoad() {

@@ -25,5 +25,7 @@ export class ProjectDetails {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectDetails');
   }
-
+  goBack(){
+    this.navCtrl.pop();
+  }
 }

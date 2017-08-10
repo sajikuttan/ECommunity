@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
-
 import { NavController, NavParams } from 'ionic-angular';
-
+import { Network } from 'ionic-native';
 
 @Component({
   selector: 'page-item-details',
@@ -10,11 +8,43 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ItemDetailsPage {
   selectedItem: any;
-  videoUrl: SafeResourceUrl;
-
-  constructor(private domSanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams) {
+  
+  videos : any[] = [
+          {
+            title : 'Tutorial 1',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+          {
+            title : 'Tutorial 2',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+          {
+            title : 'Tutorial 3',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+          {
+            title : 'Tutorial 4',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+          {
+            title : 'Tutorial 5',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+          {
+            title : 'Tutorial 6',
+            videourl : 'https://www.youtube.com/embed/2KOxZtLxdK4'
+          },
+  ];
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/2KOxZtLxdK4');
+    
     this.selectedItem = navParams.get('item');
+    let disconnectSub = Network.onDisconnect().subscribe(() => {
+      console.log('you are offline');
+    });
+
+    let connectSub = Network.onConnect().subscribe(()=> {
+      console.log('you are online');
+    });
   }
 }
