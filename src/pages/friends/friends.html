@@ -15,6 +15,9 @@
       <ion-segment-button value="friends">
         Friends
       </ion-segment-button>
+      <ion-segment-button value="people">
+        People
+      </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="true"></ion-searchbar>
@@ -36,6 +39,20 @@
             <ion-row>
               <ion-col col-12>
                 <span >{{friend}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'people'">
+        <ion-item *ngFor="let people of peopleList; let i=index">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-8>
+                <span >{{people}}</span>
+              </ion-col>
+              <ion-col col-2>
+                <button ion-button>Add Friend</button>
               </ion-col>
             </ion-row>
           </ion-grid>
