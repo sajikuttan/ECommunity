@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "debug": "registry:npm/debug#2.0.0+20170504163145",
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725"
+  },
+  "devDependencies": {},
+  "globalDevDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654"
+  }
+}

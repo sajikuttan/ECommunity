@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Network } from 'ionic-native';
+//import { Network } from 'ionic-native';
 
 @Component({
   selector: 'page-item-details',
@@ -8,7 +8,8 @@ import { Network } from 'ionic-native';
 })
 export class ItemDetailsPage {
   selectedItem: any;
-  
+  url : 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyC4AI7E7TT163wSe1EghCk2hfKMw-LtJ2w&channelId=UChYheBnVeCfhCmqZfCUdJQw&part=snippet,id&order=date&maxResults=20';
+  // https://www.youtube.com/channel/UChYheBnVeCfhCmqZfCUdJQw
   videos : any[] = [
           {
             title : 'Tutorial 1',
@@ -36,15 +37,16 @@ export class ItemDetailsPage {
           },
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.url);
     // If we navigated to this page, we will have an item available as a nav param
     
     this.selectedItem = navParams.get('item');
-    let disconnectSub = Network.onDisconnect().subscribe(() => {
+   /* let disconnectSub = Network.onDisconnect().subscribe(() => {
       console.log('you are offline');
-    });
+    });*/
 
-    let connectSub = Network.onConnect().subscribe(()=> {
+   /* let connectSub = Network.onConnect().subscribe(()=> {
       console.log('you are online');
-    });
+    });*/
   }
 }

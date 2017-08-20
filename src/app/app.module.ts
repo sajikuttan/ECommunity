@@ -11,7 +11,6 @@ import { ListPage } from '../pages/list/list';
 import { Login } from '../pages/login/login';
 import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
-
 import { HttpModule } from '@angular/http'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { VideoPlayer } from '@ionic-native/video-player';
