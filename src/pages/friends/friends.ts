@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the Friends page.
@@ -18,7 +18,7 @@ export class Friends {
   public chats = ['Jhon Doe','Jhon Doe','Jhon Doe'];
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public peopleList = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public e: Events,private alertCtrl: AlertController) {
     
     if(this.navParams.get('param1') != null){
       this.friend = this.navParams.get('param1');
@@ -32,5 +32,27 @@ export class Friends {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Friends');
+  }
+  addFriend(people,event){
+    let alert = this.alertCtrl.create({
+        title: 'Add Friends',
+        subTitle: 'Do you want add ' + people + ' as Your Friend',
+        buttons: [
+          {
+            text: 'Yes',
+            role: 'ok',
+            handler: () => {
+             
+            }
+          },
+          {
+            text: 'No',
+            handler: () => {
+              console.log('no');
+            }
+          }
+        ]
+      });
+      alert.present();
   }
 }
