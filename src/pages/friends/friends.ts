@@ -42,13 +42,16 @@ export class Friends {
             text: 'Yes',
             role: 'ok',
             handler: () => {
-             
+              var target = event.srcElement;
+
+              target.innerHTML = 'Request<br>Sent';
             }
           },
           {
             text: 'No',
             handler: () => {
-              console.log('no');
+              var target = event.srcElement;
+              target.innerHTML = 'Add Friend';
             }
           }
         ]

@@ -45,14 +45,14 @@
         </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'people'">
-        <ion-item *ngFor="let people of peopleList; let id=index">
+        <ion-item *ngFor="let people of peopleList; let i=index">
           <ion-grid>
             <ion-row>
               <ion-col col-8>
                 <span >{{people}}</span>
               </ion-col>
               <ion-col col-2>
-                <button ion-button (click)="addFriend(people)">Add Friend</button>
+                <button ion-button id="i" (click)="addFriend(people,$event)">Add Friend</button>
               </ion-col>
             </ion-row>
           </ion-grid>
