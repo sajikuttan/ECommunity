@@ -23,11 +23,11 @@
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="true"></ion-searchbar>
   <div [ngSwitch]="friend">
     <ion-list *ngSwitchCase="'chats'" >
-        <ion-item *ngFor="let chat of chats; let i=index">
+        <ion-item *ngFor="let chat of chats; let i=index" (click)="openChat(chat)">
           <ion-grid>
             <ion-row>
               <ion-col col-12>
-                <span >{{chat}}</span>
+                <span>{{chat}}</span>
               </ion-col>
             </ion-row>
           </ion-grid>

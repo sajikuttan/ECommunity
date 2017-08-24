@@ -1,4 +1,3 @@
-import { Login } from '../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
@@ -32,8 +31,7 @@ export class MyApp {
       { title: 'Dashboard', component: HelloIonicPage },
       { title: 'Languages', component: ListPage },
       { title: 'Project', component: Project },
-      { title: 'Friends', component: Friends },
-      { title: 'Login', component: Login }
+      { title: 'Friends', component: Friends }
     ];
   }
 

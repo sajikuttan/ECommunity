@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Chats } from '../chat/chat';
 /**
  * Generated class for the Friends page.
  *
@@ -15,7 +15,7 @@ import { AlertController, Events, IonicPage, NavController, NavParams } from 'io
 export class Friends {
   friend : string;
   myInput : string = '';
-  public chats = ['Jhon Doe','Jhon Doe','Jhon Doe'];
+  public chats = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public peopleList = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   constructor(public navCtrl: NavController, public navParams: NavParams,public e: Events,private alertCtrl: AlertController) {
@@ -57,5 +57,10 @@ export class Friends {
         ]
       });
       alert.present();
+  }
+  openChat(chat){
+    this.navCtrl.push(Chats, {
+      chatName: chat
+    });
   }
 }

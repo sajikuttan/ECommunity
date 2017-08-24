@@ -11,6 +11,9 @@ import { ListPage } from '../pages/list/list';
 import { Login } from '../pages/login/login';
 import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
+import { Chats } from '../pages/chat/chat';
+
+
 import { HttpModule } from '@angular/http'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { VideoPlayer } from '@ionic-native/video-player';
@@ -27,7 +30,8 @@ import { IonicStorageModule } from "@ionic/storage";
     Friends,
     Project,
     ProjectDetails,
-    Data
+    Data,
+    Chats
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { IonicStorageModule } from "@ionic/storage";
     ListPage,
     Friends,
     Project,
-    ProjectDetails
+    ProjectDetails,
+    Chats
   ],
   providers: [
     StatusBar,
