@@ -2,6 +2,7 @@ import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { IonicPage,  NavController,  NavParams} from 'ionic-angular';
 import * as io from 'socket.io-client';
+import { Keyboard } from '@ionic-native/keyboard';
 /**
  * Generated class for the Chat page.
  *
@@ -19,7 +20,7 @@ export class Chats {
   chat_input:string;
   chats = [];
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private keyboard: Keyboard) {
     this.chatName = navParams.get('chatName');
     this.socket = io('http://192.168.0.7:3000');
 
@@ -37,6 +38,8 @@ export class Chats {
             this.socket.emit('message', msg);
         }
         this.chat_input = '';
+        this.keyboard.show();
+        this.keyboard.disableScroll(true);
     }
 
 }
