@@ -17,7 +17,7 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
-  
+  public static userName = "User Demo";
   public my = 12;
   constructor(
     public platform: Platform,

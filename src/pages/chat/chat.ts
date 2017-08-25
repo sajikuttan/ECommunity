@@ -1,6 +1,7 @@
+import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage,  NavController,  NavParams} from 'ionic-angular';
+import * as io from 'socket.io-client';
 /**
  * Generated class for the Chat page.
  *
@@ -14,12 +15,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Chats {
   chatName : string;
+  socket:any;
+  chat_input:string;
+  chats = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.chatName = navParams.get('chatName');
+    this.socket = io('http://192.168.0.7:3000');
+
+    this.socket.on('message', (msg) => {
+      console.log("message", msg);
+      this.chats.push(MyApp.userName + ": " +msg );
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Chat');
   }
+  send(msg) {
+        if(msg != '' || msg != null){
+            this.socket.emit('message', msg);
+        }
+        this.chat_input = '';
+    }
 
 }
