@@ -13,15 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'test.html',
 })
 export class Test {
-
+  typeIndicator = false;
   chatMessages = [];
   options=['Booleans','Doubles','_FILE_','_FUNCTION_'];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.chatMessages.push(this.wishes());
-    setTimeout(function(){
-      this.chatMessages.push("Let's Take A Test");
-      this.chatMessages.push("Are You Ready ??");
-    },300);
+    this.chatMessages.push(this.wishes());    
+    this.typeIndicators();
   }
   questions(){
     var question =  ['Which of the following type of variables have only two possible values either true or false?','Which of the following magic constant of PHP returns function name?'];
@@ -30,6 +27,9 @@ export class Test {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Test');
+  }
+  typeIndicators(){
+    this.typeIndicator =true;
   }
 
   wishes(){

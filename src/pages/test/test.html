@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>test</ion-title>
+    <ion-title>Test</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,7 +21,10 @@
       <ion-item *ngFor="let message of chatMessages">
         <div class="messages">
           <div class="message">
-            <span class="text">{{message}}</span>
+            <span class="text">
+              {{message}}
+            </span>
+            <img *ngIf="typeIndicator" class="push-right" src="assets/image/type.gif">
           </div>
       </div>
     </ion-item>
