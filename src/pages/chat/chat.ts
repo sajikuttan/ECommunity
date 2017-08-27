@@ -23,7 +23,8 @@ export class Chats {
   constructor(public navCtrl: NavController, public navParams: NavParams,private keyboard: Keyboard) {
     this.chatName = navParams.get('chatName');
     this.socket = io('http://192.168.0.7:3000');
-
+    
+    
     this.socket.on('message', (msg) => {
       console.log("message", msg);
       this.chats.push(MyApp.userName + ": " +msg );

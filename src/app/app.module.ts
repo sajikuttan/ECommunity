@@ -12,7 +12,8 @@ import { Login } from '../pages/login/login';
 import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
 import { Chats } from '../pages/chat/chat';
-
+import { Test } from '../pages/test/test';
+import { Assignment } from '../pages/assignment/assignment';
 
 import { HttpModule } from '@angular/http'; 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,7 +33,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     Project,
     ProjectDetails,
     Data,
-    Chats
+    Chats,
+    Test,
+    Assignment
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     Friends,
     Project,
     ProjectDetails,
-    Chats
+    Chats,
+    Test,
+    Assignment
   ],
   providers: [
     StatusBar,

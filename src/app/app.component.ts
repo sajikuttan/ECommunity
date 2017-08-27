@@ -8,6 +8,8 @@ import { Friends } from '../pages/friends/friends';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
+import { Test } from '../pages/test/test';
+import { Assignment } from '../pages/assignment/assignment';
 
 @Component({
   templateUrl: 'app.html',
@@ -17,7 +19,8 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
-  public static userName = "User Demo";
+  public static userName = "You";
+  public chats = [];
   public my = 12;
   constructor(
     public platform: Platform,
@@ -31,7 +34,9 @@ export class MyApp {
       { title: 'Dashboard', component: HelloIonicPage },
       { title: 'Languages', component: ListPage },
       { title: 'Project', component: Project },
-      { title: 'Friends', component: Friends }
+      { title: 'Friends', component: Friends },
+      { title: 'Test', component: Test },
+      { title: 'Assignment', component: Assignment }
     ];
   }
 
