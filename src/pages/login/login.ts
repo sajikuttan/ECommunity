@@ -1,9 +1,9 @@
-// import { Http, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Component } from '@angular/core';
 import { IonicPage,  NavController,  NavParams} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-// import { Auth } from '@ionic/cloud-angular';
-// import {JwtHelper} from "angular2-jwt";
+import { Auth } from '@ionic/cloud-angular';
+import {JwtHelper} from "angular2-jwt";
 // import {Storage} from "@ionic/storage";
 //pages import
 /**
@@ -19,24 +19,23 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class Login {
   private todo : FormGroup;
-  // public user_type;
   disabled = true;
   // private LOGIN_URL = "http://127.0.0.1:8000/sessions/create";
-  // private SIGNUP_URL = "http://127.0.0.1:8000/api/authenticate/user";
+  private SIGNUP_URL = "http://127.0.0.1:8000/";
 
-  // auth: Auth;
+  auth: Auth;
 
   // // When the page loads, we want the Login segment to be selected
-  // authType: string = "login";
+  authType: string = "login";
 
   // // We need to set the content type for the server
-  // contentHeader = new Headers({"Content-Type": "application/json"});
+  contentHeader = new Headers({"Content-Type": "application/json"});
 
-  // error: string;
-  // jwtHelper = new JwtHelper();
-  // user: string;
+  error: string;
+  jwtHelper = new JwtHelper();
+  user: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams ,private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams ,private formBuilder: FormBuilder,private http: Http) {
     this.todo = this.formBuilder.group({
       user_name: ['', Validators.required],
       password: ['',Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -51,28 +50,24 @@ export class Login {
     //   }).catch(console.log);
     // });
   }
-  // userType(type){
-  //   this.user_type= type;
-  // }
-  // logForm(){
-  //   // var user_name = this.todo['user_name'];
-  //   var email = this.todo['email'];
-  //   var password = this.todo['password'];
-  //   //var data = JSON.stringify({email: email,password: password});
-  //   // this.signup(data);
-  //   // let headers = new Headers();
+  logForm(){
+    // var user_name = this.todo['user_name'];
+    var email = this.todo['email'];
+    var password = this.todo['password'];
+    var data = JSON.stringify({email: email,password: password});
+    let headers = new Headers();
 
-  //   // headers.append('Content-Type', 'application/json')
-  //   // this.http.post(link, data, {headers : headers})
-  //   // .subscribe(data => {
-  //   //     this.authSuccess(data.id_token);
-  //   //     this.navCtrl.push(HelloIonicPage);
-  //   //     this.navCtrl.setRoot(HelloIonicPage);
-  //   //     this.navCtrl.getActive(false);
-  //   // }, error => {
-  //   //     alert("Oooops!");
-  //   // }); 
-  // }
+    headers.append('Accept', 'application/xml');
+    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
+    headers.append('Access-Control-Allow-Origin','*');
+    console.log(headers);
+    this.http.post(this.SIGNUP_URL, data, {headers : headers})
+    .subscribe(data => {
+        alert("Success");
+    }, error => {
+        alert("Oooops!");
+    }); 
+  }
   // signup(credentials) {
   //   this.http.post(this.SIGNUP_URL,credentials, { headers: this.contentHeader })
   //     .map(res => res.json())

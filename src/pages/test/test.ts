@@ -17,8 +17,8 @@ export class Test {
   chatMessages = [];
   options=['Booleans','Doubles','_FILE_','_FUNCTION_'];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.chatMessages.push(this.wishes());    
     this.typeIndicators();
+    this.chatMessages.push(this.wishes());
   }
   questions(){
     var question =  ['Which of the following type of variables have only two possible values either true or false?','Which of the following magic constant of PHP returns function name?'];

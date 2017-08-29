@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
 import { Test } from '../pages/test/test';
 import { Assignment } from '../pages/assignment/assignment';
+import { Login } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html',
@@ -36,7 +37,8 @@ export class MyApp {
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
       { title: 'Test', component: Test },
-      { title: 'Assignment', component: Assignment }
+      { title: 'Assignment', component: Assignment },
+      { title: 'Login', component: Login }
     ];
   }
 
