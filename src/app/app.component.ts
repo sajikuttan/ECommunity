@@ -21,6 +21,7 @@ export class MyApp {
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
   public static userName = "You";
+  public static url = "http://192.168.122.1:8000/en";
   public chats = [];
   public my = 12;
   constructor(

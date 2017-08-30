@@ -31,7 +31,7 @@
   <div [ngSwitch]="language">
     <!--<input type="checkbox" (click)="deleteItem($event, item)">-->
     <ion-list *ngSwitchCase="'selected-language'" >
-        <ion-item *ngFor="let item of technologies; let i=index" (click)="itemTapped($event, item)">
+        <ion-item *ngFor="let item of technologies2; let i=index" (click)="itemTapped($event, item)">
           <ion-grid>
             <ion-row>
               <ion-col col-4>
@@ -51,14 +51,14 @@
         </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'not-selected-language'">
-        <ion-item *ngFor="let item of technologies2; let i=index">
+        <ion-item *ngFor="let item of technologies; let i=index">
             <ion-grid>
               <ion-row>
                 <ion-col col-11>
-                  {{item.technology}}
+                  {{item.name}}
                 </ion-col>
                 <ion-col col-1>
-                  <ion-icon name="add-circle" (click)="doConfirm(item.technology)"></ion-icon>
+                  <ion-icon name="add-circle" (click)="doConfirm(item.name)"></ion-icon>
                 </ion-col>
               </ion-row>
             </ion-grid>

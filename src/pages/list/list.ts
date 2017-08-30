@@ -1,8 +1,9 @@
+import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AlertController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { Http ,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -14,36 +15,24 @@ export class ListPage {
   items: Array<{title: string, note: string, icon: string}>;
   language : string;
   isValid = false;
-  public data = ['PHP','JAVA','MYSQL'];
-  data2 = ['ANGULAR','TYPESCRIPT','ASP','TESTING','CPP','C','PYTHON','RUBY'];
   technologies = [];
   technologies2 = [];
+  url = "/technologies";
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController) {
     this.language = "selected-language";
-    // this.http.get('http://localhost/ElearnApp/technology.php')
-    // .map(res => res.json())
-    // .subscribe(data => {
-    //     for(var i =0;i<data.length;i++){
-    //       this.technologies.push({
-    //           id: data[i].id,
-    //           technology:data[i].technology
-    //       });
-    //     }
-    //   });
-    var i:any;
-    for(i =0;i<this.data.length;i++){
-        this.technologies.push({
-            id: i,
-            technology: this.data[i]
-        });
-    }
-    for(i =0;i<this.data2.length;i++){
-        this.technologies2.push({
-            id: i,
-            technology: this.data2[i]
-        });
-    }
-    
+    let headers = new Headers();
+
+    headers.append('Accept', 'application/xml');
+    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Headers','*');
+
+    this.http.get(MyApp.url+this.url,{headers : headers})
+    .map(res => res.json())
+    .subscribe(data => {
+      this.technologies = data;
+    });
   }
   technologyData(){
     return this.technologies;

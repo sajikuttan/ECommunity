@@ -21,7 +21,7 @@ export class Login {
   private todo : FormGroup;
   disabled = true;
   // private LOGIN_URL = "http://127.0.0.1:8000/sessions/create";
-  private SIGNUP_URL = "http://127.0.0.1:8000/";
+  private SIGNUP_URL = "http://127.0.0.1:8000/en/technologies";
 
   auth: Auth;
 
@@ -52,16 +52,16 @@ export class Login {
   }
   logForm(){
     // var user_name = this.todo['user_name'];
-    var email = this.todo['email'];
-    var password = this.todo['password'];
-    var data = JSON.stringify({email: email,password: password});
+    // var email = this.todo['email'];
+    // var password = this.todo['password'];
+    // var data = JSON.stringify({email: email,password: password});
     let headers = new Headers();
 
     headers.append('Accept', 'application/xml');
     headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
     headers.append('Access-Control-Allow-Origin','*');
     console.log(headers);
-    this.http.post(this.SIGNUP_URL, data, {headers : headers})
+    this.http.get(this.SIGNUP_URL,{headers : headers})
     .subscribe(data => {
         alert("Success");
     }, error => {
