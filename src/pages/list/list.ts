@@ -32,6 +32,8 @@ export class ListPage {
     .map(res => res.json())
     .subscribe(data => {
       this.technologies = data;
+    }, error => {
+        alert(error);
     });
   }
   technologyData(){

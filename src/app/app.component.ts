@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { AlertController, MenuController, Nav, Platform } from 'ionic-angular';
 
 import { ListPage } from '../pages/list/list';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
@@ -11,6 +11,7 @@ import { Project } from '../pages/project/project';
 import { Test } from '../pages/test/test';
 import { Assignment } from '../pages/assignment/assignment';
 import { Login } from '../pages/login/login';
+import { Demo } from '../pages/demo/demo';
 
 @Component({
   templateUrl: 'app.html',
@@ -20,15 +21,15 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
-  public static userName = "You";
-  public static url = "http://192.168.122.1:8000/en";
+  public static userName = "Jhon Doe";
+  public static url = "http://192.168.0.7:8000/en";
   public chats = [];
-  public my = 12;
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private alertCtrl: AlertController
   ) {
     this.initializeApp();
     // set our app's pages
@@ -39,7 +40,8 @@ export class MyApp {
       { title: 'Friends', component: Friends },
       { title: 'Test', component: Test },
       { title: 'Assignment', component: Assignment },
-      { title: 'Login', component: Login }
+      { title: 'Login', component: Login },
+      { title: 'Demo', component: Demo }
     ];
   }
 
@@ -57,5 +59,33 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      inputs: [
+        {
+          name: 'IP',
+          placeholder: 'IP',
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'No',
+          role: 'No',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            MyApp.url = "http://"+data.IP+":8000/en";
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

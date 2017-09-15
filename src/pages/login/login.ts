@@ -65,7 +65,7 @@ export class Login {
     .subscribe(data => {
         alert("Success");
     }, error => {
-        alert("Oooops!");
+        alert(error);
     }); 
   }
   // signup(credentials) {

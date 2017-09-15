@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="nav-color">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,28 +7,14 @@
   </ion-navbar>
   </ion-header>
   <ion-content>
-  <ion-list>
-      <ion-item *ngFor="let message of chatMessages">
-        <div class="messages">
-          <ion-grid>
-            <ion-row>
-              <ion-col col-12>
-                <div class="message">
-                  <span class="text push-left">
-                    {{message}}
-                  </span>
-                </div>
-              </ion-col>
-              <ion-col col-12 *ngIf="typeIndicator">
-                <div class="push-left typing-indicator">
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+    <div class="message-wrap">
+      <div *ngFor="let message of chatMessages"
+          class="message">
+        <div class="msg-detail">
+          <div class="msg-content">
+            <p class="line-breaker ">{{message}}</p>
+          </div>
+        </div>
       </div>
-    </ion-item>
-  </ion-list>
-</ion-content>
+    </div>
+  </ion-content>

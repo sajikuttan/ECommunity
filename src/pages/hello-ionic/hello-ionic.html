@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="nav-color">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -13,22 +13,7 @@
         Languages
       </ion-list-header>
       <button *ngFor="let item of technologies; let i=index" ion-item (click)="itemTapped($event, item)">
-          <ion-grid>
-            <ion-row>
-              <ion-col col-2>
-                {{item.technology}}
-              </ion-col>
-              <ion-col col-8>
-                <div class="progress-outer">
-                      <div class="progress-inner" [style.width]="progress + '%'">
-                      </div>
-                  </div>
-              </ion-col>
-              <ion-col col-2>
-                0%
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          {{item.technology}}
       </button>
         <p (click)="navigateToList()">More...</p>
     </ion-list>

@@ -14,8 +14,10 @@ import { Friends } from '../pages/friends/friends';
 import { Chats } from '../pages/chat/chat';
 import { Test } from '../pages/test/test';
 import { Assignment } from '../pages/assignment/assignment';
+import { Demo } from '../pages/demo/demo';
 
 import { HttpModule } from '@angular/http'; 
+import { SwingModule } from 'angular2-swing';
 import { StatusBar } from '@ionic-native/status-bar';
 import { VideoPlayer } from '@ionic-native/video-player';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,11 +37,13 @@ import { Keyboard } from '@ionic-native/keyboard';
     Data,
     Chats,
     Test,
-    Assignment
+    Assignment,
+    Demo
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    SwingModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
   ],
@@ -55,7 +59,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     ProjectDetails,
     Chats,
     Test,
-    Assignment
+    Assignment,
+    Demo
   ],
   providers: [
     StatusBar,
