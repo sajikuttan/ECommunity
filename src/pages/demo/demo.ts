@@ -8,6 +8,7 @@ import {
   SwingCardComponent} from 'angular2-swing';
 import 'rxjs/Rx';
 import { Http } from '@angular/http';
+
 /**
  * Generated class for the Demo page.
  *
@@ -26,7 +27,6 @@ export class Demo {
   cards: Array<any>;
   stackConfig: StackConfig;
   recentCard: string = '';
-  
   constructor(public navCtrl: NavController, public navParams: NavParams,private http: Http) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
@@ -39,6 +39,7 @@ export class Demo {
         return 800;
       }
     };
+    this.addNewCards();
   }
   
   ngAfterViewInit() {
@@ -46,9 +47,6 @@ export class Demo {
     this.swingStack.throwin.subscribe((event: DragEvent) => {
       event.target.style.background = '#ffffff';
     });
-    
-    this.cards = [{email: ''}];
-    this.addNewCards(1);
   }
   onItemMove(element, x, y, r) {
     var color = '';
@@ -67,24 +65,20 @@ export class Demo {
   }
   
   // Connected through HTML
-  voteUp(like: boolean) {
-    let removedCard = this.cards.pop();
-    this.addNewCards(1);
+  voteUp(like: boolean) {    
     if (like) {
-      this.recentCard = 'You liked: ' + removedCard.email;
+      console.log(like);
     } else {
-      this.recentCard = 'You disliked: ' + removedCard.email;
+      console.log(like);
     }
   }
   
   // Add new cards to our array
-  addNewCards(count: number) {
-    this.http.get('https://randomuser.me/api/?results=' + count)
-    .map(data => data.json().results)
-    .subscribe(result => {
-      for (let val of result) {
-        this.cards.push(val);
-      }
+  addNewCards() {
+    this.http.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=102e891928fc4d1186c84da5ca4572d1')
+    .map(res => res.json())
+    .subscribe(data => {
+        this.cards =data['articles'];
     })
   }
   
