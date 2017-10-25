@@ -23,6 +23,10 @@ import { VideoPlayer } from '@ionic-native/video-player';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from "@ionic/storage";
 import { Keyboard } from '@ionic-native/keyboard';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Friend } from '../providers/friend';
+import { NewsBlogs } from '../providers/news-blogs';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { Keyboard } from '@ionic-native/keyboard';
     SpeechRecognition,
     VideoPlayer,
     Keyboard,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ScreenOrientation,
+    SQLite,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Friend,
+    NewsBlogs
   ]
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ import {
   SwingStackComponent,
   SwingCardComponent} from 'angular2-swing';
 import 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { NewsBlogs } from '../../providers/news-blogs';
 
 /**
  * Generated class for the Demo page.
@@ -25,9 +25,10 @@ export class Demo {
   @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
   
   cards: Array<any>;
+  slidedCard: Array<any>;
   stackConfig: StackConfig;
   recentCard: string = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams,private http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private newsBlog : NewsBlogs) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
@@ -39,6 +40,8 @@ export class Demo {
         return 800;
       }
     };
+  }
+  ionViewDidLoad() {
     this.addNewCards();
   }
   
@@ -65,24 +68,31 @@ export class Demo {
   }
   
   // Connected through HTML
-  voteUp(like: boolean) {    
+  bookmark(like: boolean) {   
+    let removedCard = this.cards.pop();
+    this.slidedCard = removedCard;
+    console.log(removedCard);
     if (like) {
       console.log(like);
     } else {
-      console.log(like);
+      this.slidedCard;
     }
   }
   
+  slideCards(like: boolean) {   
+    let removedCard = this.cards.pop();
+    this.slidedCard = removedCard;
+    console.log(removedCard);
+    if (like) {
+      console.log(like);
+    } else {
+      this.slidedCard;
+    }
+  }
   // Add new cards to our array
   addNewCards() {
-    this.http.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=102e891928fc4d1186c84da5ca4572d1')
-    .map(res => res.json())
-    .subscribe(data => {
-        this.cards =data['articles'];
-    })
+    this.cards = this.newsBlog.getData();
   }
-  
-  // http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
   decimalToHex(d, padding) {
     var hex = Number(d).toString(16);
     padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;

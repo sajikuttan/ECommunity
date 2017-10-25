@@ -5,17 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>demo</ion-title>
+  <ion-navbar color="nav-color">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>News Blogs</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content>
-
-<div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(true)" (throwoutright)="voteUp(false)" id="card-stack">
+<div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="bookmark(true)" (throwoutup)="slideCards(true)"
+ (throwoutdown)="slideCards(false)" (throwoutright)="bookmark(false)" id="card-stack">
     <ion-card #mycards1 swing-card *ngFor="let c of cards">
       <ion-item *ngIf="c.urlToImage">
           <img *ngIf="c.urlToImage"[src]="c.urlToImage">
@@ -28,8 +27,6 @@
         </p>
         <a href="{{c.url}}">more</a>
       </ion-card-content>
- 
-      
     </ion-card>
   </div>
   <p style="text-align: center; width: 100%;">{{ recentCard }}</p>

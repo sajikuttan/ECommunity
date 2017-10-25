@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { AlertController, MenuController, Nav, Platform } from 'ionic-angular';
+import { MenuController, Nav, Platform } from 'ionic-angular';
 
 import { ListPage } from '../pages/list/list';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
@@ -12,6 +12,8 @@ import { Test } from '../pages/test/test';
 import { Assignment } from '../pages/assignment/assignment';
 import { Login } from '../pages/login/login';
 import { Demo } from '../pages/demo/demo';
+import 'rxjs/add/operator/map';
+import { NewsBlogs } from '../providers/news-blogs';
 
 @Component({
   templateUrl: 'app.html',
@@ -20,6 +22,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
+  cards: Array<any>;
   pages: Array<{title: string, component: any}>;
   public static userName = "Jhon Doe";
   public static url = "http://192.168.0.7:8000/en";
@@ -29,7 +32,7 @@ export class MyApp {
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private alertCtrl: AlertController
+    private newsBlog : NewsBlogs
   ) {
     this.initializeApp();
     // set our app's pages
@@ -41,8 +44,9 @@ export class MyApp {
       { title: 'Test', component: Test },
       { title: 'Assignment', component: Assignment },
       { title: 'Login', component: Login },
-      { title: 'Demo', component: Demo }
+      { title: 'News', component: Demo }
     ];
+    newsBlog.setData();
   }
 
   initializeApp() {
@@ -53,39 +57,10 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
-
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
-  }
-  presentPrompt() {
-    let alert = this.alertCtrl.create({
-      title: 'Login',
-      inputs: [
-        {
-          name: 'IP',
-          placeholder: 'IP',
-          type: 'text'
-        }
-      ],
-      buttons: [
-        {
-          text: 'No',
-          role: 'No',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Yes',
-          handler: data => {
-            MyApp.url = "http://"+data.IP+":8000/en";
-          }
-        }
-      ]
-    });
-    alert.present();
   }
 }
