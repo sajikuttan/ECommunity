@@ -13,7 +13,8 @@ import { Assignment } from '../pages/assignment/assignment';
 import { Login } from '../pages/login/login';
 import { Demo } from '../pages/demo/demo';
 import 'rxjs/add/operator/map';
-import { NewsBlogs } from '../providers/news-blogs';
+import { LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html',
@@ -21,7 +22,8 @@ import { NewsBlogs } from '../providers/news-blogs';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  rootPage: HelloIonicPage;
+  loader: any;
   cards: Array<any>;
   pages: Array<{title: string, component: any}>;
   public static userName = "Jhon Doe";
@@ -32,9 +34,23 @@ export class MyApp {
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private newsBlog : NewsBlogs
+    public loadingCtrl: LoadingController, 
+    public storage: Storage
   ) {
     this.initializeApp();
+    this.presentLoading();
+    this.storage.get('introShown').then((result) => {
+ 
+        if(result){
+          this.nav.setRoot(HelloIonicPage);
+        } else {
+          this.nav.setRoot(Login);
+          this.storage.set('introShown', true);
+        }
+ 
+        this.loader.dismiss();
+ 
+      });
     // set our app's pages
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },
@@ -46,7 +62,6 @@ export class MyApp {
       { title: 'Login', component: Login },
       { title: 'News', component: Demo }
     ];
-    newsBlog.setData();
   }
 
   initializeApp() {
@@ -62,5 +77,15 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  presentLoading() {
+ 
+    this.loader = this.loadingCtrl.create({
+      content: "Authenticating..."
+    });
+ 
+    this.loader.present();
+ 
   }
 }

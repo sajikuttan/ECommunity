@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chats } from '../chat/chat';
-import { Friend } from '../../providers/friend';
 /**
  * Generated class for the Friends page.
  *
@@ -18,8 +17,8 @@ export class Friends {
   myInput : string = '';
   public chats = ['Jhon Doe','Jhon Doe 2','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public e: Events,private alertCtrl: AlertController,private FriendProvider: Friend) {
-    
+  public peopleList = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
+  constructor(public navCtrl: NavController, public navParams: NavParams,public e: Events,private alertCtrl: AlertController) {    
     if(this.navParams.get('param1') != null){
       this.friend = this.navParams.get('param1');
     }else{
@@ -30,6 +29,7 @@ export class Friends {
   ionViewDidLoad() {
     this.chats;
     this.friends;
+    this.peopleList;
   }
   addFriend(people,event){
     let alert = this.alertCtrl.create({

@@ -14,8 +14,8 @@ import { Friends } from '../pages/friends/friends';
 import { Chats } from '../pages/chat/chat';
 import { Test } from '../pages/test/test';
 import { Assignment } from '../pages/assignment/assignment';
-import { Demo } from '../pages/demo/demo';
-
+// import { Demo } from '../pages/demo/demo';
+import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from '@angular/http'; 
 import { SwingModule } from 'angular2-swing';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,8 +24,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from "@ionic/storage";
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { Friend } from '../providers/friend';
-import { NewsBlogs } from '../providers/news-blogs';
 import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
@@ -41,8 +39,8 @@ import { SQLite } from '@ionic-native/sqlite';
     Data,
     Chats,
     Test,
-    Assignment,
-    Demo
+    Assignment
+    // Demo
   ],
   imports: [
     BrowserModule,
@@ -64,7 +62,7 @@ import { SQLite } from '@ionic-native/sqlite';
     Chats,
     Test,
     Assignment,
-    Demo
+    // Demo
   ],
   providers: [
     StatusBar,
@@ -75,8 +73,7 @@ import { SQLite } from '@ionic-native/sqlite';
     ScreenOrientation,
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Friend,
-    NewsBlogs
+    Facebook
   ]
 })
 export class AppModule {}

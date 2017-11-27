@@ -7,8 +7,6 @@ import {
   SwingStackComponent,
   SwingCardComponent} from 'angular2-swing';
 import 'rxjs/Rx';
-import { NewsBlogs } from '../../providers/news-blogs';
-
 /**
  * Generated class for the Demo page.
  *
@@ -28,7 +26,7 @@ export class Demo {
   slidedCard: Array<any>;
   stackConfig: StackConfig;
   recentCard: string = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams,private newsBlog : NewsBlogs) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
@@ -91,7 +89,6 @@ export class Demo {
   }
   // Add new cards to our array
   addNewCards() {
-    this.cards = this.newsBlog.getData();
   }
   decimalToHex(d, padding) {
     var hex = Number(d).toString(16);
