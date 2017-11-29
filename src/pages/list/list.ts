@@ -1,10 +1,11 @@
 import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AlertController } from 'ionic-angular';
 import { Http ,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Technology } from '../technology/technology';
 
 @Component({
   selector: 'page-list',
@@ -16,9 +17,8 @@ export class ListPage {
   language : string;
   isValid = false;
   technologies = [];
-  technologies2 = [];
   url = "/technologies";
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController,public modalCtrl: ModalController) {
     this.language = "selected-language";
     let headers = new Headers();
 
@@ -39,6 +39,12 @@ export class ListPage {
   technologyData(){
     return this.technologies;
   }
+
+  presentTechnologyModal() {
+    let profileModal = this.modalCtrl.create(Technology);
+    profileModal.present();
+  }
+
   doConfirm(technology) {
     let confirm = this.alerCtrl.create({
       title: 'ADD Course',

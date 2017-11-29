@@ -13,6 +13,7 @@ import { Project } from '../pages/project/project';
 import { Friends } from '../pages/friends/friends';
 import { Chats } from '../pages/chat/chat';
 import { Test } from '../pages/test/test';
+import { Technology } from '../pages/technology/technology';
 import { Assignment } from '../pages/assignment/assignment';
 // import { Demo } from '../pages/demo/demo';
 import { Facebook } from '@ionic-native/facebook';
@@ -39,7 +40,8 @@ import { SQLite } from '@ionic-native/sqlite';
     Data,
     Chats,
     Test,
-    Assignment
+    Assignment,
+    Technology
     // Demo
   ],
   imports: [
@@ -62,6 +64,7 @@ import { SQLite } from '@ionic-native/sqlite';
     Chats,
     Test,
     Assignment,
+    Technology,
     // Demo
   ],
   providers: [

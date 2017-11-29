@@ -27,7 +27,7 @@ export class MyApp {
   cards: Array<any>;
   pages: Array<{title: string, component: any}>;
   public static userName = "Jhon Doe";
-  public static url = "http://192.168.0.7:8000/en";
+  public static url = "http://127.0.0.7:8000/en";
   public chats = [];
   constructor(
     public platform: Platform,
@@ -54,7 +54,7 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },
-      { title: 'Languages', component: ListPage },
+      { title: 'Technology', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
       { title: 'Test', component: Test },

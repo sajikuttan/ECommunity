@@ -95,5 +95,6 @@
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="124311935014039" />
         <variable name="APP_NAME" value="ICODE" />
+        <variable name="APP_URL" value="http://192.168.0.7:8000/en" />
     </plugin>
 </widget>

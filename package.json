@@ -81,7 +81,8 @@
       "cordova-plugin-hotspot": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "124311935014039",
-        "APP_NAME": "ICODE"
+        "APP_NAME": "ICODE",
+        "APP_URL": "http://192.168.0.7:8000/en"
       }
     }
   }
