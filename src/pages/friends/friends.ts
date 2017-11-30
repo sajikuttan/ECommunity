@@ -14,7 +14,7 @@ import { Chats } from '../chat/chat';
 })
 export class Friends {
   friend : string;
-  myInput : string = '';
+  searchTerm: string = '';
   public chats = ['Jhon Doe','Jhon Doe 2','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
   public peopleList = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];

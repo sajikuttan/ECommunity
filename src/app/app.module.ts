@@ -1,4 +1,5 @@
 import { Data } from '../pipes/data';
+import { DataSearch } from '../providers/data-search';
 import { ProjectDetails } from '../pages/project-details/project-details';
 import { MyApp } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -76,7 +77,8 @@ import { SQLite } from '@ionic-native/sqlite';
     ScreenOrientation,
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Facebook
+    Facebook,
+    DataSearch
   ]
 })
 export class AppModule {}
