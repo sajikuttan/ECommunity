@@ -7,32 +7,19 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-toolbar>
-    Project Details
-  </ion-toolbar>
-  Ionic App Base
-
-  This is the base template for Ionic starter apps.
-
-
-  Using this project
-
-  Install the latest Ionic CLI:
-
-  $ npm install -g ionic
-  Then run:
-
-  $ ionic start myApp
-  More info on this can be found on the Ionic Getting Started page.
-
+  <ion-item-divider>
+    Reqirements
+  </ion-item-divider>
+  <ion-item>
+  </ion-item>
+  <ion-item-divider>
+    Description
+  </ion-item-divider>
+  <ion-item>
+  </ion-item>
+  <ion-fab right bottom>
+     <button ion-button type="submit" round color="secondary" (click)="addProject()">
+       <ion-icon name="add"></ion-icon>
+     </button>
+  </ion-fab>
 </ion-content>
-<ion-footer>
-  <button ion-button icon-start class="push-left" (click)="goBack()">
-    <ion-icon name="close"></ion-icon>
-    Cancel
-  </button>
-  <button ion-button icon-start class="push-right" (click)="addProject()">
-    <ion-icon name="add-circle"></ion-icon>
-    Add
-  </button>
-</ion-footer>

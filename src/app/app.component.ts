@@ -8,10 +8,8 @@ import { Friends } from '../pages/friends/friends';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
-import { Test } from '../pages/test/test';
-import { Assignment } from '../pages/assignment/assignment';
 import { Login } from '../pages/login/login';
-import { Demo } from '../pages/demo/demo';
+import { Assignment } from '../pages/assignment/assignment';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -57,10 +55,7 @@ export class MyApp {
       { title: 'Technology', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
-      { title: 'Test', component: Test },
-      { title: 'Assignment', component: Assignment },
-      { title: 'Login', component: Login },
-      { title: 'News', component: Demo }
+      { title: 'Workgroup', component: Assignment }
     ];
   }
 

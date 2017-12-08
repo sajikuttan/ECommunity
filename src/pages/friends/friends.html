@@ -7,36 +7,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="friend" color="primary">
-      <ion-segment-button value="chats">
-        Chats
-      </ion-segment-button>
-      <ion-segment-button value="friends">
-        Friends
-      </ion-segment-button>
-      <ion-segment-button value="people">
-        People
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
   <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="true" (ionInput)="setFilteredItems()" ></ion-searchbar>
-  <div [ngSwitch]="friend">
-    <ion-list *ngSwitchCase="'chats'" >
-        <ion-item *ngFor="let chat of chats; let i=index" (click)="openChat(chat)">
+    <ion-list>
+        <ion-item *ngFor="let friend of friends;">
           <ion-grid>
-            <ion-row>
-              <ion-col col-12>
-                <span>{{chat}}</span>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-    </ion-list>
-    <ion-list *ngSwitchCase="'friends'">
-        <ion-item *ngFor="let friend of friends; let i=index">
-          <ion-grid>
-            <ion-row>
+            <ion-row (click)="viewProfile()">
               <ion-col col-12>
                 <span >{{friend}}</span>
               </ion-col>
@@ -44,19 +19,9 @@
           </ion-grid>
         </ion-item>
     </ion-list>
-    <ion-list *ngSwitchCase="'people'">
-        <ion-item *ngFor="let people of peopleList; let i=index">
-          <ion-grid>
-            <ion-row>
-              <ion-col col-8>
-                <span >{{people}}</span>
-              </ion-col>
-              <ion-col col-2>
-                <button ion-button id="i" (click)="addFriend(people,$event)">Add Friend</button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-    </ion-list>
-  </div>
+    <ion-fab right bottom>
+       <button ion-button round color="danger" (click)="addFriend()">
+         <ion-icon name="add"></ion-icon>
+       </button>
+    </ion-fab>
 </ion-content>

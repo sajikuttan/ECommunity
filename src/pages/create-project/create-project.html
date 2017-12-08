@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="nav-color">
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create Custom Project</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+<form (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label>Project Name</ion-label>
+        <ion-input type="text" [(ngModel)]="project.title" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Project Description</ion-label>
+        <ion-textarea [(ngModel)]="project.description" name="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Technologies used</ion-label>
+        <ion-input type="text" [(ngModel)]="project.technology" name="technologies"></ion-input>
+      </ion-item>
+      <ion-item>
+		  <ion-label>Add Member</ion-label>
+		  <ion-select [(ngModel)]="project.members" name="members" multiple="true">
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		    <ion-option value="John Doe">John Doe</ion-option>
+		  </ion-select>
+		</ion-item>
+		<p *ngFor="let item of project.members">
+		{{item}},
+		</p>
+      <button ion-button type="submit" block>Add project</button>
+    </form>
+</ion-content>

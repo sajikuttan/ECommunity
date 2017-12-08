@@ -19,29 +19,12 @@
   </ion-toolbar>
   <div [ngSwitch]="project_field">
     <ion-list *ngSwitchCase="'development'" >
-      <ion-item>
-        <ion-label>Project Type</ion-label>
-        <ion-select [(ngModel)]="dev_project_type">
-          <ion-option value="project_mobile">Mobile App</ion-option>
-          <ion-option value="project_web_app">Web App</ion-option>
-          <ion-option value="project_website">Website</ion-option>
-          <ion-option value="all">All</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item (click)="projectDetails('E-learn Mobile App',project_dev,0)">
+      <ion-item (click)="projectDetails('E-learn Mobile App',project_dev)">
         E-learn Mobile App.
         <p text-wrap>Create a elearning mobile app for all standards of science ,commerce and arts</p>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'testing'">
-      <ion-item>
-        <ion-label>Project Type</ion-label>
-        <ion-select [(ngModel)]="test_project_type">
-          <ion-option value="mobile_app">Mobile App</ion-option>
-          <ion-option value="web_app">Web App</ion-option>
-          <ion-option value="website">Website</ion-option>
-        </ion-select>
-      </ion-item>
     </ion-list>
   </div>
 </ion-content>

@@ -26,11 +26,10 @@ export class Project {
     Project.project_web_app = 1;
     Project.project_website = 2;
   }
-  projectDetails(title,type,app_type){   
+  projectDetails(title,type){   
     this.navCtrl.push(ProjectDetails,{
       title : title,
-      type : type,
-      app_type : app_type
+      type : type
     });                                                                                                                                                                                 
   }
 }

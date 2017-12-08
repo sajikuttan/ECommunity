@@ -1,6 +1,6 @@
-import { Friends } from '../friends/friends';
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Group } from '../group/group';
 
 /**
  * Generated class for the ProjectDetails page.
@@ -16,11 +16,9 @@ import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angu
 export class ProjectDetails {
   project_title;
   project_type;
-  project_app_type;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.project_title = navParams.get('title');
     this.project_type = navParams.get('type');
-    this.project_app_type = navParams.get('app_type');
   }
 
   ionViewDidLoad() {
@@ -30,27 +28,6 @@ export class ProjectDetails {
     this.navCtrl.pop();
   }
   addProject(){
-    let alert = this.alertCtrl.create({
-        title: 'Selected '+this.project_title + ' Project',
-        subTitle: 'Do you want to add Your Friends ?',
-        buttons: [
-          {
-            text: 'Yes',
-            role: 'ok',
-            handler: () => {
-              this.navCtrl.push(Friends, {
-                param1: 'friends'
-              });
-            }
-          },
-          {
-            text: 'No',
-            handler: () => {
-              console.log('Buy clicked');
-            }
-          }
-        ]
-      });
-      alert.present();
+    this.navCtrl.push(Group);
   }
 }

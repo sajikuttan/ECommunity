@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AlertController, Events, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chats } from '../chat/chat';
+import { Profile } from '../profile/profile';
+import { People } from '../people/people';
 /**
  * Generated class for the Friends page.
  *
@@ -15,10 +17,10 @@ import { Chats } from '../chat/chat';
 export class Friends {
   friend : string;
   searchTerm: string = '';
-  public chats = ['Jhon Doe','Jhon Doe 2','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
+  
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
-  public peopleList = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public e: Events,private alertCtrl: AlertController) {    
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {    
     if(this.navParams.get('param1') != null){
       this.friend = this.navParams.get('param1');
     }else{
@@ -27,38 +29,17 @@ export class Friends {
   }
 
   ionViewDidLoad() {
-    this.chats;
     this.friends;
-    this.peopleList;
   }
-  addFriend(people,event){
-    let alert = this.alertCtrl.create({
-        title: 'Add Friends',
-        subTitle: 'Do you want add ' + people + ' as Your Friend',
-        buttons: [
-          {
-            text: 'Yes',
-            role: 'ok',
-            handler: () => {
-              var target = event.srcElement;
-
-              target.innerHTML = 'Request<br>Sent';
-            }
-          },
-          {
-            text: 'No',
-            handler: () => {
-              var target = event.srcElement;
-              target.innerHTML = 'Add Friend';
-            }
-          }
-        ]
-      });
-      alert.present();
+  addFriend(){
+    this.navCtrl.push(People);
   }
   openChat(chat){
     this.navCtrl.push(Chats, {
       chatName: chat
     });
+  }
+  viewProfile(){
+    this.navCtrl.push(Profile);
   }
 }

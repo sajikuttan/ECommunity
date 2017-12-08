@@ -1,28 +1,26 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CreateProject } from '../create-project/create-project';
+
 /**
- * Generated class for the Assignment page.
+ * Generated class for the Profile page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-assignment',
-  templateUrl: 'assignment.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class Assignment {
+export class Profile {
 
+  username :string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.username = navParams.get('username');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Assignment');
-  }
-
-  createCustomProject(){
-  	this.navCtrl.push(CreateProject);
+    console.log('ionViewDidLoad Profile');
   }
 
 }

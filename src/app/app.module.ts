@@ -1,22 +1,9 @@
-import { Data } from '../pipes/data';
-import { DataSearch } from '../providers/data-search';
-import { ProjectDetails } from '../pages/project-details/project-details';
+//Plugin and Required packages
 import { MyApp } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import {SpeechRecognition} from '@ionic-native/speech-recognition';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
-import { Login } from '../pages/login/login';
-import { Project } from '../pages/project/project';
-import { Friends } from '../pages/friends/friends';
-import { Chats } from '../pages/chat/chat';
-import { Test } from '../pages/test/test';
-import { Technology } from '../pages/technology/technology';
-import { Assignment } from '../pages/assignment/assignment';
-// import { Demo } from '../pages/demo/demo';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from '@angular/http'; 
 import { SwingModule } from 'angular2-swing';
@@ -27,6 +14,29 @@ import { IonicStorageModule } from "@ionic/storage";
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SQLite } from '@ionic-native/sqlite';
+
+//pages packages
+import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { ListPage } from '../pages/list/list';
+import { ProjectDetails } from '../pages/project-details/project-details';
+import { Login } from '../pages/login/login';
+import { Project } from '../pages/project/project';
+import { People } from '../pages/people/people';
+import { Profile } from '../pages/profile/profile';
+import { Friends } from '../pages/friends/friends';
+import { Chats } from '../pages/chat/chat';
+import { Test } from '../pages/test/test';
+import { CreateProject } from '../pages/create-project/create-project';
+import { Technology } from '../pages/technology/technology';
+import { Assignment } from '../pages/assignment/assignment';
+import { Group } from '../pages/group/group';
+
+//pipes packages
+import { Data } from '../pipes/data';
+
+//providers packages
+import { DataSearch } from '../providers/data-search';
 
 @NgModule({
   declarations: [
@@ -42,8 +52,11 @@ import { SQLite } from '@ionic-native/sqlite';
     Chats,
     Test,
     Assignment,
-    Technology
-    // Demo
+    Technology,
+    People,
+    Profile,
+    Group,
+    CreateProject
   ],
   imports: [
     BrowserModule,
@@ -66,7 +79,10 @@ import { SQLite } from '@ionic-native/sqlite';
     Test,
     Assignment,
     Technology,
-    // Demo
+    People,
+    Profile,
+    Group,
+    CreateProject,
   ],
   providers: [
     StatusBar,
