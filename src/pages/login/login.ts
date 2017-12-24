@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook,FacebookLoginResponse } from '@ionic-native/facebook';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { Http ,Headers} from '@angular/http';
+import 'rxjs/add/operator/map';
 /**
  * Generated class for the Login page.
  *
@@ -16,8 +18,10 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 export class Login {
 
   userData: any;
+  userDataResponse: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private facebook: Facebook) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private facebook: Facebook,public http: Http) {
+    this.userData={};
   }
 
   ionViewDidLoad() {
@@ -26,6 +30,30 @@ export class Login {
 
   goToHome(){
     this.navCtrl.setRoot('HelloIonicPage');
+  }
+  regiterForm(){
+    let headers = new Headers();
+    var data = JSON.stringify({
+                first_name:this.userData.first_name,
+                email:this.userData.email,
+                password:this.userData.password,
+                password_confirmation:this.userData.password_confirmation
+              });
+    headers.append('Accept', 'application/xml');
+    // headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
+    // headers.append('Access-Control-Allow-Credentials', 'true');
+    // headers.append('Access-Control-Allow-Origin','*');
+    // headers.append('Access-Control-Allow-Headers','Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+    console.log(data);
+    this.http.post('http://localhost/myApp/public/en/signup',data,{headers : headers})
+    .map(res => res.json())
+    .subscribe(data => {
+      this.userDataResponse.response = data;
+      console.log(data);
+      alert(data);
+    }, error => {
+        alert(error);
+    });
   }
 
   facebookLogin() {
@@ -36,5 +64,4 @@ export class Login {
     });
     this.navCtrl.push(HelloIonicPage);
   }
-
 }

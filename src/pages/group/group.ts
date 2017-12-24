@@ -13,10 +13,10 @@ import { Assignment } from '../assignment/assignment';
   templateUrl: 'group.html',
 })
 export class Group {
-
   friend : string;
   searchTerm: string = '';
   public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
+  public groupmembers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
   }
 
@@ -47,5 +47,18 @@ export class Group {
   });
       alert.present();
   }
+  addToGroup(selectedmember: string){
+    this.groupmembers.push(selectedmember);
+    const index = this.friends.indexOf(selectedmember);
+    if (index !== -1) {
+        this.friends.splice(index, 1);
+    }
 
+  }
+  deleteFromGroup(selectedmember: string){
+    const index = this.groupmembers.indexOf(selectedmember);
+    if (index !== -1) {
+        this.groupmembers.splice(index, 1);
+    }
+  }
 }

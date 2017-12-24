@@ -18,4 +18,9 @@ page-list {
         border-radius: 20px;
         background-color: map-get($colors, primary);
     }
+    .round{
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
 }

@@ -40,6 +40,8 @@ export class Friends {
     });
   }
   viewProfile(){
-    this.navCtrl.push(Profile);
+    this.navCtrl.push(Profile,{
+      profile_viewer: 'sendMessage'
+    });
   }
 }

@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
 import { Login } from '../pages/login/login';
 import { Assignment } from '../pages/assignment/assignment';
+import { Profile } from '../pages/profile/profile';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -55,7 +56,9 @@ export class MyApp {
       { title: 'Technology', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
-      { title: 'Workgroup', component: Assignment }
+      { title: 'Workgroup', component: Assignment },
+      { title: 'Profile', component: Profile },
+      { title: 'Login', component: Login }
     ];
   }
 

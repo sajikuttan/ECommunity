@@ -1,7 +1,9 @@
 <ion-header>
   <ion-navbar color="nav-color">
       <ion-title>Technology</ion-title>
-      <button ion-button (click)="goBack()">Back</button>
+      <ion-buttons end>
+    	<button ion-button (click)="goBack()">Close</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -14,8 +16,8 @@
 		    	<ion-checkbox ></ion-checkbox>
 		  	</ion-item>
 	    </ion-list>
-	    <ion-fab *ngIf="buttonClicked" right bottom>
-		   <button ion-button type="submit" round color="secondary" >
+	    <ion-fab *ngIf="true" right bottom>
+		   <button ion-button type="submit" class="round" round color="secondary" >
 		     <ion-icon name="arrow-dropright"></ion-icon>
 		   </button>
 		 </ion-fab>

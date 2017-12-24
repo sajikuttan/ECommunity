@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Friends } from '../friends/friends';
+import { Project } from '../project/project';
+import { Technology } from '../technology/technology';
+import { People } from '../people/people';
+import { Chats } from '../chat/chat';
 
 /**
  * Generated class for the Profile page.
@@ -15,12 +20,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class Profile {
 
   username :string;
+  template_identifier: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.username = navParams.get('username');
+  	this.template_identifier = navParams.get('profile_viewer');
+    if(this.template_identifier==null){
+      this.template_identifier='connectMoreFriend';
+    }
+    console.log(this.template_identifier);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Profile');
+  }
+  viewFriends(){
+  	this.navCtrl.push(Friends);
+  }
+  viewProjects(){
+  	this.navCtrl.push(Project);
+  }
+  viewTechnology(){
+  	this.navCtrl.push(Technology);
+  }
+  addFriend(){
+
+  }
+  sendMessage(friend: string){
+    this.navCtrl.push(Chats,{
+      chatName:friend
+    });
+  }
+  connectFriends(){
+  	this.navCtrl.push(People);
   }
 
 }

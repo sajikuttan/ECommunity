@@ -18,13 +18,39 @@
 	</div>
 	<div class="list card">
 		<ion-grid>
-			<ion-col col-4>
-				
-			</ion-col>
-			<ion-col col-4>
-			</ion-col>
-			<ion-col col-4>
-			</ion-col>
+			<ion-row>
+				<ion-col col-4>
+					<ion-card (click)="viewFriends()">
+						<h1>0</h1>
+						<h4>Friends</h4>
+					</ion-card>
+				</ion-col>
+				<ion-col col-4>
+					<ion-card (click)="viewProjects()">
+						<h1>0</h1>
+						<h4>Projects</h4>
+					</ion-card>
+				</ion-col>
+				<ion-col col-4>
+					<ion-card (click)="viewTechnology()">
+						<h1>0</h1>
+						<h4>Technology</h4>
+					</ion-card>
+				</ion-col>
+			</ion-row>
 		</ion-grid>
+	</div>
+	<div class="list card">
+		<div [ngSwitch]="template_identifier">
+			<div *ngSwitchCase="'connectMoreFriend'"> 
+				<button ion-button (click)="connectFriends()" block>Connect More Friend</button>
+			</div>
+			<div *ngSwitchCase="'addFriend'">
+				<button ion-button block (click)="addFriend()">Add Friend</button>
+			</div>
+			<div *ngSwitchCase="'sendMessage'">
+				<button ion-button (click)="sendMessage('Jhon Doe')" block>Send Message</button>
+			</div>
+		</div>
 	</div>
 </ion-content>
