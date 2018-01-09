@@ -37,6 +37,7 @@ import { Data } from '../pipes/data';
 
 //providers packages
 import { DataSearch } from '../providers/data-search';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { DataSearch } from '../providers/data-search';
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
-    DataSearch
+    DataSearch,
+    SettingsProvider
   ]
 })
 export class AppModule {}

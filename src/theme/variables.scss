@@ -87,3 +87,7 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+//theme template import
+@import "theme.light";
+@import "theme.dark";

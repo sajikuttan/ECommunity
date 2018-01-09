@@ -29,7 +29,7 @@ export class Login {
   }
 
   goToHome(){
-    this.navCtrl.setRoot('HelloIonicPage');
+    this.navCtrl.setRoot(HelloIonicPage);
   }
   regiterForm(){
     let headers = new Headers();

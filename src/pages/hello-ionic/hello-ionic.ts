@@ -1,4 +1,4 @@
-import { Project } from '../project/project';
+import { Technology } from '../technology/technology';
 import { Friends } from '../friends/friends';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { NavController, NavParams } from 'ionic-angular';
@@ -51,8 +51,8 @@ export class HelloIonicPage {
   navigateToFriends(){
       this.navCtrl.push(Friends);
   }
-  navigateToProjects(){
-      this.navCtrl.push(Project);
+  navigateToTehnology(){
+      this.navCtrl.push(Technology);
   }
   isGroupShown(group) {
       return this.shownGroup === group;

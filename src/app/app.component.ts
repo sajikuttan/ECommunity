@@ -14,6 +14,7 @@ import { Profile } from '../pages/profile/profile';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @Component({
   templateUrl: 'app.html',
@@ -21,6 +22,7 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   // make HelloIonicPage the root (or first) page
+  selectedTheme: String;
   rootPage: HelloIonicPage;
   loader: any;
   cards: Array<any>;
@@ -34,14 +36,18 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public loadingCtrl: LoadingController, 
-    public storage: Storage
+    public storage: Storage,
+    private settings: SettingsProvider
   ) {
     this.initializeApp();
     this.presentLoading();
+    
     this.storage.get('introShown').then((result) => {
  
         if(result){
           this.nav.setRoot(HelloIonicPage);
+          this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+          console.log(this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val));
         } else {
           this.nav.setRoot(Login);
           this.storage.set('introShown', true);
