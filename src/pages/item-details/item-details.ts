@@ -11,28 +11,29 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 export class ItemDetailsPage {
   selectedItem: any;
   urls_id_array=[];
-  videos : any = {};
+  videos : any[] = [];
   trustedVideoUrl: SafeResourceUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,youtubeProvider:YoutubeProvider,
+  constructor(public navCtrl: NavController, public navParams: NavParams,private youtubeProvider:YoutubeProvider,
     private domSanitizer: DomSanitizer) {
-    this.videos= youtubeProvider.video_id_array;
-    
-
-    console.log(this.videos)
     // If we navigated to this page, we will have an item available as a nav param
-    
-    this.selectedItem = navParams.get('item');
-   /* let disconnectSub = Network.onDisconnect().subscribe(() => {
-      console.log('you are offline');
-    });*/
+      this.getArrayOfIds();
+      this.selectedItem = navParams.get('item');
+    /* let disconnectSub = Network.onDisconnect().subscribe(() => {
+        console.log('you are offline');
+      });*/
 
-   /* let connectSub = Network.onConnect().subscribe(()=> {
-      console.log('you are online');
-    });*/
+    /* let connectSub = Network.onConnect().subscribe(()=> {
+        console.log('you are online');
+      });*/
   }
   ionViewWillEnter(): void {
-    console.log(this.domSanitizer.bypassSecurityTrustResourceUrl('https://youtube.com/embed/XHCVWWsQmUs'));
-      this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.videos.videourl);
   } 
+  getArrayOfIds(){
+    var arr = this.youtubeProvider.video_id_array;
+    console.log(this.youtubeProvider.video_id_array);
+    for(let entry of this.youtubeProvider.video_id_array){
+      this.videos.push("https://www.youtube.com/embed/"+entry);
+    }
+  }
 }

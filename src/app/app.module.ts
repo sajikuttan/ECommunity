@@ -30,6 +30,8 @@ import { Test } from '../pages/test/test';
 import { CreateProject } from '../pages/create-project/create-project';
 import { Technology } from '../pages/technology/technology';
 import { Assignment } from '../pages/assignment/assignment';
+import { AssignmentCreatePage } from '../pages/assignment-create/assignment-create';
+import { AssignmentDetailsPage } from '../pages/assignment-details/assignment-details';
 import { Group } from '../pages/group/group';
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -66,7 +68,9 @@ const config = {
     Profile,
     Group,
     CreateProject,
-    SettingsPage
+    SettingsPage,
+    AssignmentCreatePage,
+    AssignmentDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,9 @@ const config = {
     Profile,
     Group,
     CreateProject,
-    SettingsPage
+    SettingsPage,
+    AssignmentCreatePage,
+    AssignmentDetailsPage
   ],
   providers: [
     StatusBar,

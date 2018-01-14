@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="projectName">{{projectName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-toolbar>
+      <ion-segment [(ngModel)]="activeTab"  >
+        <ion-segment-button value="details">
+          Details
+        </ion-segment-button>
+        <ion-segment-button value="requirements">
+          Requiremens
+        </ion-segment-button>
+        <ion-segment-button value="members">
+            Members
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+    <div [ngSwitch]="activeTab">
+      <ion-list *ngSwitchCase="'details'" >
+        <h1>Project Name : {{projectName}}</h1>
+        <p>
+          {{projectData.long_description}}
+        </p>
+      </ion-list>
+      <ion-list *ngSwitchCase="'requirements'">
+        <p>
+            {{projectData.requirements}}
+        </p>
+      </ion-list>
+      <ion-list *ngSwitchCase="'members'">
+        <ion-list>
+            <ion-item *ngFor="let member of projectData.members;">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-8>
+                    <span >{{member}}</span>
+                  </ion-col>
+                  <ion-col col-4>
+                      <button ion-button>Remove</button>
+                    </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+        </ion-list>
+        <ion-fab right bottom>
+            <button ion-button class="round" round color="danger" (click)="addMembers()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-fab>
+      </ion-list>
+    </div>
+</ion-content>

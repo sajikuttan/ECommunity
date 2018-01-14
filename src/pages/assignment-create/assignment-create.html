@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create Project</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="regiterForm()">
+    <ion-item>
+      <ion-label stacked color="primary">Project Name</ion-label>
+      <ion-input type="text" [(ngModel)]="projectData.name" name="name" requird></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Descrition</ion-label>
+      <ion-textarea [(ngModel)]="projectData.long_description" name="long_description" rows="6" required></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Requirements</ion-label>
+      <ion-textarea [(ngModel)]="projectData.requirements" name="requirements" rows="6" required></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Technology Required</ion-label>
+      <ion-input type="text" [(ngModel)]="projectData.technology_requirements" name="technology_requirements" requird></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked color="primary">Add Members</ion-label>
+        <ion-select [(ngModel)]="projectData.members" name="members" multiple="true">
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          <ion-option>John Doe</ion-option>
+          </ion-select>
+      </ion-item>
+    <button ion-button type="submit" block>Add</button>
+  </form>
+</ion-content>

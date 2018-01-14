@@ -32,21 +32,20 @@ export class YoutubeProvider {
     });
   }
   getVideos(yid){
-    var arr = {};
-    var url ="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUJbPGzawDH1njbqV-D5HqKw&maxResults=10&forUsername=thenewboston&key=AIzaSyABOMA1sECLaBejkrK2MjOgsBGI2sZd5fk";
+    var arr = [];
+    var url ="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId="+yid+"&maxResults=10&forUsername=thenewboston&key=AIzaSyABOMA1sECLaBejkrK2MjOgsBGI2sZd5fk";
     this.http.get(url)
     .map(res => res as JSON)
     .subscribe(data => {
       for (var key in  data['items']) {
         if ( data['items'].hasOwnProperty(key)) {
           var vedio_id =  data['items'][key].snippet.resourceId.videoId;
-          arr['videourl']  = "www.youtube.com/embed/"+vedio_id;
-          this.video_id_array.push(arr);
+          arr['video']  = "www.youtube.com/embed/"+vedio_id;
+          this.video_id_array.push(vedio_id);
         }
       }
     }, error => {
         alert(error);
     });
-    console.log(this.video_id_array);
   }
 }

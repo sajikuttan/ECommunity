@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CreateProject } from '../create-project/create-project';
+import { AssignmentCreatePage } from '../assignment-create/assignment-create';
 /**
  * Generated class for the Assignment page.
  *
@@ -22,7 +22,7 @@ export class Assignment {
   }
 
   createCustomProject(){
-  	this.navCtrl.push(CreateProject);
+  	this.navCtrl.push(AssignmentCreatePage);
   }
 
 }
