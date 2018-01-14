@@ -14,7 +14,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SQLite } from '@ionic-native/sqlite';
-
+import { HttpClientModule } from '@angular/common/http';
 //pages packages
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
@@ -31,6 +31,7 @@ import { CreateProject } from '../pages/create-project/create-project';
 import { Technology } from '../pages/technology/technology';
 import { Assignment } from '../pages/assignment/assignment';
 import { Group } from '../pages/group/group';
+import { SettingsPage } from '../pages/settings/settings';
 
 //pipes packages
 import { Data } from '../pipes/data';
@@ -38,6 +39,13 @@ import { Data } from '../pipes/data';
 //providers packages
 import { DataSearch } from '../providers/data-search';
 import { SettingsProvider } from '../providers/settings/settings';
+import { YoutubeProvider } from '../providers/youtube/youtube';
+const config = {
+  apiKey: "AIzaSyABOMA1sECLaBejkrK2MjOgsBGI2sZd5fk",
+  authDomain: "icode-177318.firebaseapp.com",
+  databaseURL: "https://icode-177318.firebaseio.com/",
+  storageBucket: "gs://icode-177318.appspot.com"
+};
 
 @NgModule({
   declarations: [
@@ -57,14 +65,16 @@ import { SettingsProvider } from '../providers/settings/settings';
     People,
     Profile,
     Group,
-    CreateProject
+    CreateProject,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     SwingModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,6 +94,7 @@ import { SettingsProvider } from '../providers/settings/settings';
     Profile,
     Group,
     CreateProject,
+    SettingsPage
   ],
   providers: [
     StatusBar,
@@ -96,7 +107,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
     DataSearch,
-    SettingsProvider
+    SettingsProvider,
+    YoutubeProvider
   ]
 })
 export class AppModule {}

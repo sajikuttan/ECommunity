@@ -15,6 +15,8 @@ import { ListPage } from '../list/list';
 export class HelloIonicPage {
   shownGroup = null;
   technologies = [];
+  selectedTheme: String;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     // this.http.get('http://localhost/ElearnApp/technology.php')
     // .map(res => res.json())

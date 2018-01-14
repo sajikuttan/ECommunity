@@ -7,6 +7,7 @@ import { Http ,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Technology } from '../technology/technology';
 
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -33,7 +34,7 @@ export class ListPage {
     .subscribe(data => {
       this.technologies = data;
     }, error => {
-        alert(error);
+        // alert(error);
     });
   }
   technologyData(){

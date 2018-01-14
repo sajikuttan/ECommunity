@@ -14,5 +14,5 @@ export class Data {
   constructor(public http: Http) {
     console.log('Hello Data Provider');
   }
-
+  
 }

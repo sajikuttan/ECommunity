@@ -28,7 +28,7 @@ export class MyApp {
   cards: Array<any>;
   pages: Array<{title: string, component: any}>;
   public static userName = "Jhon Doe";
-  public static url = "http://127.0.0.7:8000/en";
+  public static url = "http://127.0.0.1:8000/en";
   public chats = [];
   constructor(
     public platform: Platform,
@@ -36,18 +36,16 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public loadingCtrl: LoadingController, 
-    public storage: Storage,
-    private settings: SettingsProvider
+    public storage: Storage
   ) {
     this.initializeApp();
     this.presentLoading();
     
+    this.storage.set('theme-store', 'light-theme');
     this.storage.get('introShown').then((result) => {
  
         if(result){
           this.nav.setRoot(HelloIonicPage);
-          this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
-          console.log(this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val));
         } else {
           this.nav.setRoot(Login);
           this.storage.set('introShown', true);

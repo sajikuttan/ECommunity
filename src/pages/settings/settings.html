@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item-divider>Username and Password Setting</ion-item-divider>
+  <ion-card>
+      <form>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="userData.first_name" placeholder="New Username" name="first_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="userData.password" placeholder="New Password" name="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="userData.password_confirmation" 
+          placeholder="Password Confirmation"name="password_confirmation"></ion-input>
+        </ion-item>
+        <button ion-button type="submit" block>Update</button>
+      </form>
+  </ion-card>
+  <ion-item-divider>Theme Setting</ion-item-divider>
+  <ion-item>
+    <ion-label id="theme-name">Light Mode</ion-label>
+    <ion-toggle [(ngModel)]="isToggled" (ionChange)="changeTheme()"><ion-icon name="moon"></ion-icon></ion-toggle>
+  </ion-item>
+</ion-content>

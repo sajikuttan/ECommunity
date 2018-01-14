@@ -15,7 +15,7 @@ import { Keyboard } from '@ionic-native/keyboard';
   templateUrl: 'chat.html',
 })
 export class Chats {
-  chatName : string;
+  chatName : string;  
   socket:any;
   chat_input:string;
   chats = [];
@@ -31,6 +31,8 @@ export class Chats {
     });
   }
 
+  
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad Chat');
   }

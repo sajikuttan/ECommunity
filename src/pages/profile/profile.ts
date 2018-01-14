@@ -5,7 +5,6 @@ import { Project } from '../project/project';
 import { Technology } from '../technology/technology';
 import { People } from '../people/people';
 import { Chats } from '../chat/chat';
-
 /**
  * Generated class for the Profile page.
  *
@@ -21,6 +20,7 @@ export class Profile {
 
   username :string;
   template_identifier: string;
+  selectedTheme :string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.username = navParams.get('username');
   	this.template_identifier = navParams.get('profile_viewer');
@@ -45,6 +45,7 @@ export class Profile {
   addFriend(){
 
   }
+
   sendMessage(friend: string){
     this.navCtrl.push(Chats,{
       chatName:friend

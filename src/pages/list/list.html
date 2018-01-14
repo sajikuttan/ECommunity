@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="nav-color">
+  <ion-navbar >
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -25,13 +25,16 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <span >{{item.technology}}</span>
+                <span >{{item.name}}</span>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
     </ion-list>
   </div>
+  <ion-item (click)="itemTapped($event, item)">
+    <span >Demo</span>
+  </ion-item>
   <ion-fab right bottom>
    <button ion-button class="round" round color="danger" (click)="presentTechnologyModal()">
      <ion-icon name="add"></ion-icon>

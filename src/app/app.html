@@ -1,14 +1,12 @@
-<ion-menu [content]="content">
-
+<ion-menu [content]="content" id="loggedInMenu" >
   <ion-header>
-    <ion-toolbar color="nav-color">
+    <ion-toolbar>
       <ion-title>ICODE</ion-title>
       <ion-avatar>
         <img class="item-img" src="assets/images/avatar.png">
       </ion-avatar>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
@@ -16,7 +14,5 @@
       </button>
     </ion-list>
   </ion-content>
-
 </ion-menu>
-
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content [class]="selectedTheme" swipeBackEnabled="false"></ion-nav>
