@@ -15,12 +15,14 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SQLite } from '@ionic-native/sqlite';
 import { HttpClientModule } from '@angular/common/http';
+import { GooglePlus } from '@ionic-native/google-plus';
+
 //pages packages
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { ProjectDetails } from '../pages/project-details/project-details';
-import { Login } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 import { Project } from '../pages/project/project';
 import { People } from '../pages/people/people';
 import { Profile } from '../pages/profile/profile';
@@ -42,19 +44,16 @@ import { Data } from '../pipes/data';
 import { DataSearch } from '../providers/data-search';
 import { SettingsProvider } from '../providers/settings/settings';
 import { YoutubeProvider } from '../providers/youtube/youtube';
-const config = {
-  apiKey: "AIzaSyABOMA1sECLaBejkrK2MjOgsBGI2sZd5fk",
-  authDomain: "icode-177318.firebaseapp.com",
-  databaseURL: "https://icode-177318.firebaseio.com/",
-  storageBucket: "gs://icode-177318.appspot.com"
-};
+import { AuthProvider } from '../providers/auth/auth';
+import { DatabaseProvider } from '../providers/database/database';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    Login,
+    LoginPage,
     ListPage,
     Friends,
     Project,
@@ -85,7 +84,7 @@ const config = {
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    Login,
+    LoginPage,
     ListPage,
     Friends,
     Project,
@@ -112,9 +111,12 @@ const config = {
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
+    GooglePlus,
     DataSearch,
     SettingsProvider,
-    YoutubeProvider
+    YoutubeProvider,
+    AuthProvider,
+    DatabaseProvider
   ]
 })
 export class AppModule {}

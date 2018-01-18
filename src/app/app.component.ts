@@ -8,13 +8,16 @@ import { Friends } from '../pages/friends/friends';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Project } from '../pages/project/project';
-import { Login } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 import { Assignment } from '../pages/assignment/assignment';
 import { Profile } from '../pages/profile/profile';
+import { Chats } from '../pages/chat/chat';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { SettingsProvider } from '../providers/settings/settings';
+import firebase from 'firebase';
+import { firebaseConfig } from './credentials';
 
 @Component({
   templateUrl: 'app.html',
@@ -27,8 +30,7 @@ export class MyApp {
   loader: any;
   cards: Array<any>;
   pages: Array<{title: string, component: any}>;
-  public static userName = "Jhon Doe";
-  public static url = "http://127.0.0.1:8000/en";
+  public static userName = "Saji";
   public chats = [];
   constructor(
     public platform: Platform,
@@ -40,14 +42,22 @@ export class MyApp {
   ) {
     this.initializeApp();
     this.presentLoading();
-    
-    this.storage.set('theme-store', 'light-theme');
+    firebase.initializeApp(firebaseConfig);
+    // const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //     this.nav.setRoot(HelloIonicPage);
+    //     unsubscribe();
+    //   } else {
+    //     this.nav.setRoot(LoginPage);
+    //     unsubscribe();
+    //   }
+    // });
     this.storage.get('introShown').then((result) => {
  
         if(result){
           this.nav.setRoot(HelloIonicPage);
         } else {
-          this.nav.setRoot(Login);
+          this.nav.setRoot(LoginPage);
           this.storage.set('introShown', true);
         }
  
@@ -60,9 +70,10 @@ export class MyApp {
       { title: 'Technology', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
+      { title: 'Chats', component: Chats },
       { title: 'Workgroup', component: Assignment },
       { title: 'Profile', component: Profile },
-      { title: 'Login', component: Login }
+      { title: 'Login', component: LoginPage }
     ];
   }
 

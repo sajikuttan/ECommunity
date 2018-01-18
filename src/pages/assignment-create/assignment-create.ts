@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AssignmentDetailsPage } from '../assignment-details/assignment-details';
+import firebase from 'firebase/app';
 /**
  * Generated class for the AssignmentCreatePage page.
  *
@@ -16,9 +17,11 @@ import { AssignmentDetailsPage } from '../assignment-details/assignment-details'
 export class AssignmentCreatePage {
   activeTab:any;
   projectData: any;
+  ref;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.projectData={};
     this.activeTab="details";
+    this.ref = firebase.database().ref('Project');
   }
 
   ionViewDidLoad() {
@@ -26,6 +29,12 @@ export class AssignmentCreatePage {
   }
   regiterForm(){
     console.log(this.projectData);
+    this.ref.push({
+      name: this.projectData.name,
+      description:this.projectData.name,
+      requirements:this.projectData.requirements,
+      technology:this.projectData.requirements,
+    });
     this.navCtrl.push(AssignmentDetailsPage,{
       projectData: this.projectData
     });

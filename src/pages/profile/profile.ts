@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Friends } from '../friends/friends';
-import { Project } from '../project/project';
+import { Assignment } from '../assignment/assignment';
 import { Technology } from '../technology/technology';
 import { People } from '../people/people';
 import { Chats } from '../chat/chat';
@@ -37,7 +37,7 @@ export class Profile {
   	this.navCtrl.push(Friends);
   }
   viewProjects(){
-  	this.navCtrl.push(Project);
+  	this.navCtrl.push(Assignment);
   }
   viewTechnology(){
   	this.navCtrl.push(Technology);

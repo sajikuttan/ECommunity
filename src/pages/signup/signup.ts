@@ -9,27 +9,25 @@ import {
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
-import { GooglePlus } from '@ionic-native/google-plus';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase/app';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-signup',
+  templateUrl: 'signup.html'
 })
-export class LoginPage {
-  public loginForm: FormGroup;
+export class SignupPage {
+  public signupForm: FormGroup;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
-    formBuilder: FormBuilder,
-    private googlePlus: GooglePlus
+    formBuilder: FormBuilder
   ) {
-    this.loginForm = formBuilder.group({
+    this.signupForm = formBuilder.group({
       email: [
         '',
         Validators.compose([Validators.required, EmailValidator.isValid])
@@ -41,43 +39,20 @@ export class LoginPage {
     });
   }
 
-  goToSignup(): void {
-    this.navCtrl.push('SignupPage');
-  }
-  googleSignIn():void{
-    this.googlePlus.login({
-      'webClientId': '<Your web client ID>',
-      'offline': true
-    }).then( res => {
-      const googleCredential = firebase.auth.GoogleAuthProvider
-              .credential(res.idToken);
-      firebase.auth().signInWithCredential(googleCredential)
-      .then( response => {
-        console.log("Firebase success: " + JSON.stringify(response));
-        this.navCtrl.setRoot(HelloIonicPage);
-      })
-      .catch(err => console.log("inner "+err));
-    })
-    .catch(err => console.error(err));
-  }
-  goToResetPassword(): void {
-    this.navCtrl.push('ResetPasswordPage');
-  }
-
-  async loginUser(): Promise<void> {
-    if (!this.loginForm.valid) {
+  async signupUser(): Promise<void> {
+    if (!this.signupForm.valid) {
       console.log(
-        `Form is not valid yet, current value: ${this.loginForm.value}`
+        `Form is not valid yet, current value: ${this.signupForm.value}`
       );
     } else {
       const loading: Loading = this.loadingCtrl.create();
       loading.present();
 
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
+      const email = this.signupForm.value.email;
+      const password = this.signupForm.value.password;
 
       try {
-        const loginUser: firebase.User = await this.authProvider.loginUser(
+        const signupUser: firebase.User = await this.authProvider.signupUser(
           email,
           password
         );
@@ -92,5 +67,8 @@ export class LoginPage {
         alert.present();
       }
     }
+  }
+  goBack(){
+    this.navCtrl.pop();
   }
 }

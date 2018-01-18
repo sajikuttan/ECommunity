@@ -6,26 +6,24 @@
     <ion-title>Project</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
-<ion-toolbar>
-    <ion-segment [(ngModel)]="project_field"  >
-      <ion-segment-button value="development">
-        Development
-      </ion-segment-button>
-      <ion-segment-button value="testing">
-        Testing
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  <div [ngSwitch]="project_field">
-    <ion-list *ngSwitchCase="'development'" >
-      <ion-item (click)="projectDetails('E-learn Mobile App',project_dev)">
-        E-learn Mobile App.
-        <p text-wrap>Create a elearning mobile app for all standards of science ,commerce and arts</p>
-      </ion-item>
-    </ion-list>
-    <ion-list *ngSwitchCase="'testing'">
-    </ion-list>
-  </div>
-</ion-content>
+<ion-content class="outer-content speaker-list">
+  <ion-list>
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
 
+        <ion-col col-12 col-md-6 align-self-stretch align-self-center approxItemHeight="457px">
+
+          <ion-card class="speaker-card">
+            <ion-card-header>
+              Website
+            </ion-card-header>
+
+            <ion-card-content class="outer-content">
+              Website
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

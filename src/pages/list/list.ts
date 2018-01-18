@@ -1,12 +1,9 @@
-import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AlertController } from 'ionic-angular';
-import { Http ,Headers} from '@angular/http';
-import 'rxjs/add/operator/map';
 import { Technology } from '../technology/technology';
-
+import { DatabaseProvider } from '../../providers/database/database';
 
 @Component({
   selector: 'page-list',
@@ -17,25 +14,11 @@ export class ListPage {
   items: Array<{title: string, note: string, icon: string}>;
   language : string;
   isValid = false;
-  technologies = [];
+  technologies:any;
   url = "/technologies";
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alerCtrl: AlertController,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public databaseProvider: DatabaseProvider,public alerCtrl: AlertController,public modalCtrl: ModalController) {
     this.language = "selected-language";
-    let headers = new Headers();
-
-    headers.append('Accept', 'application/xml');
-    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
-    headers.append('Access-Control-Allow-Credentials', 'true');
-    headers.append('Access-Control-Allow-Origin','*');
-    headers.append('Access-Control-Allow-Headers','*');
-
-    this.http.get(MyApp.url+this.url,{headers : headers})
-    .map(res => res.json())
-    .subscribe(data => {
-      this.technologies = data;
-    }, error => {
-        // alert(error);
-    });
+    this.technologies = databaseProvider.getTechnologies();
   }
   technologyData(){
     return this.technologies;

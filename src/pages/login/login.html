@@ -1,31 +1,39 @@
-<ion-slides pager="true">
-  <ion-slide>
-    <ion-card>
-      <form (ngSubmit)="regiterForm()">
-        <ion-item>
-          <ion-label>Username</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.first_name" name="first_name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Email</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.email" name="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input type="password" [(ngModel)]="userData.password" name="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Password Confirmation</ion-label>
-          <ion-input type="password" [(ngModel)]="userData.password_confirmation" name="password_confirmation"></ion-input>
-        </ion-item>
-        <button ion-button type="submit" block>Register</button>
-      </form>
-      <ion-row>
-        <ion-col>
-          <button ion-button color="light" (click)="googleLogin()">Login Google</button>
-          <button ion-button color="light" (click)="goToHome()">Go To Home</button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
-  </ion-slide>
-</ion-slides>
+<ion-content padding class="auth-page">
+	<form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+		<ion-item [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.touched"
+			[class.valid]="loginForm.controls.email.valid && loginForm.controls.email.touched">
+			<ion-label stacked>Email</ion-label>
+			<ion-input formControlName="email" type="email" placeholder="Your email address">
+			</ion-input>
+		</ion-item>
+		<ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
+		loginForm.controls.email.touched">
+			<p>Please enter a valid email address.</p>
+		</ion-item>
+
+		<ion-item [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.touched"
+			[class.valid]="loginForm.controls.password.valid && loginForm.controls.password.touched">
+			<ion-label stacked>Password</ion-label>
+			<ion-input formControlName="password" type="password" placeholder="Your password">
+			</ion-input>
+		</ion-item>
+		<ion-item class="error-message" *ngIf="!loginForm.controls.password.valid
+		&& loginForm.controls.password.touched">
+			<p>Your password needs more than 6 characters.</p>
+		</ion-item>
+
+		<button ion-button block type="submit" [disabled]="!loginForm.valid">
+			Log In
+		</button>
+	</form>
+	<button ion-button block clear (click)="goToSignup()">
+		Create a new account
+	</button>
+	<button ion-button block color="danger" (click)="googleSignIn()">
+		<ion-icon name="logo-googleplus"></ion-icon>
+		Login with Google
+	</button>
+	<button ion-button block clear (click)="goToResetPassword()">
+		I forgot my password :(
+	</button>
+</ion-content>
