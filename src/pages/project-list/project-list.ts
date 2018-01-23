@@ -15,7 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProjectListPage {
 
+  headerTitle:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.headerTitle = navParams.get('projectType');
   }
 
   ionViewDidLoad() {

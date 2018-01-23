@@ -1,6 +1,7 @@
 import { ProjectDetails } from '../project-details/project-details';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProjectListPage } from '../project-list/project-list';
 
 /**
  * Generated class for the Project page.
@@ -31,5 +32,10 @@ export class Project {
       title : title,
       type : type
     });                                                                                                                                                                                 
+  }
+  projectList(projectType){
+    this.navCtrl.push(ProjectListPage,{
+      projectType:projectType
+    })
   }
 }

@@ -7,7 +7,7 @@ export class AuthProvider {
   constructor() {}
 
   loginUser(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    return firebase.auth().signInWithEmailAndPassword(email, password);
     // var uid = firebase.auth().currentUser.uid;
     // firebase.auth().createCustomToken(uid);
   }

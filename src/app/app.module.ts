@@ -46,6 +46,7 @@ import { SettingsProvider } from '../providers/settings/settings';
 import { YoutubeProvider } from '../providers/youtube/youtube';
 import { AuthProvider } from '../providers/auth/auth';
 import { DatabaseProvider } from '../providers/database/database';
+import { ProjectListPage } from '../pages/project-list/project-list';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { DatabaseProvider } from '../providers/database/database';
     CreateProject,
     SettingsPage,
     AssignmentCreatePage,
-    AssignmentDetailsPage
+    AssignmentDetailsPage,
+    ProjectListPage
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,8 @@ import { DatabaseProvider } from '../providers/database/database';
     CreateProject,
     SettingsPage,
     AssignmentCreatePage,
-    AssignmentDetailsPage
+    AssignmentDetailsPage,
+    ProjectListPage
   ],
   providers: [
     StatusBar,
