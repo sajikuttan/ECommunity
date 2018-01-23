@@ -25,17 +25,7 @@
       <ion-input type="text" [(ngModel)]="projectData.technology_requirements" name="technology_requirements" requird></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label stacked color="primary">Add Members</ion-label>
-        <ion-select [(ngModel)]="projectData.members" name="members" multiple="true">
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          <ion-option>John Doe</ion-option>
-          </ion-select>
+        <ion-input type="text" [(ngModel)]="projectData.id" name="id" value="" #projectID ></ion-input>
       </ion-item>
     <button ion-button type="submit" block>Add</button>
   </form>

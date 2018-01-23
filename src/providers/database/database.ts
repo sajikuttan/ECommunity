@@ -12,37 +12,44 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DatabaseProvider {
   headers:any;
+  technologies:any;
   public url = "http://127.0.0.1:8000/en";
-  constructor() {
-    console.log('Hello DatabaseProvider Provider');
+  constructor(public http:Http) {
+    this.technologies={};
   } 
 
-  httpConfiguration(){
+  httpConfiguration(): Headers{
     let  headers = new Headers();
-    this.headers.append('Accept', 'application/xml');
-    this.headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
-    this.headers.append('Access-Control-Allow-Credentials', 'true');
-    this.headers.append('Access-Control-Allow-Origin','*');
-    this.headers.append('Access-Control-Allow-Headers','*');
+    headers.append('Accept', 'application/xml');
+    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Headers','*');
+    return headers;
   }
 
   addProjectData(){
 
   }
   getTechnologies(){
-    this.httpConfiguration();
-    let technologies:any;
-    this.http.get(this.url+'/technologies',{headers : this.headers})
-    .map(res => res as JSON)
-    .subscribe(data => {
-      
-      technologies= data;
-    }, error => {
-        console.log(error);
+    console.log(this.httpConfiguration());
+    this.http.get(this.url+'/technologies',{headers : this.httpConfiguration()})
+    .map(res => res.json())
+    .subscribe((data) => {
+      this.technologies = data;
+    },error =>{
+      console.log(error);
     });
-
-    return technologies;
+    console.log(this.technologies);
+    // this.http.get(this.url+'/technologies',{headers : this.headers})
+    // .map(res => res as JSON)
+    // .subscribe(data => {
+      
+    //   technologies= data;
+    // }, error => {
+    //     console.log(error);  
+    // });
+    
   }
-  
 
 }

@@ -46,7 +46,7 @@ export class LoginPage {
   }
   googleSignIn():void{
     this.googlePlus.login({
-      'webClientId': '<Your web client ID>',
+      'webClientId': '566907326636-ne9s20vdsqcqpdup85k8ji23vc1jrlmv.apps.googleusercontent.com',
       'offline': true
     }).then( res => {
       const googleCredential = firebase.auth.GoogleAuthProvider

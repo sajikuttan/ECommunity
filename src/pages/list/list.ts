@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AlertController } from 'ionic-angular';
+import { Http ,Headers} from '@angular/http';
 import { Technology } from '../technology/technology';
-import { DatabaseProvider } from '../../providers/database/database';
-
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -15,10 +14,26 @@ export class ListPage {
   language : string;
   isValid = false;
   technologies:any;
-  url = "/technologies";
-  constructor(public navCtrl: NavController, public navParams: NavParams,public databaseProvider: DatabaseProvider,public alerCtrl: AlertController,public modalCtrl: ModalController) {
+  public url = "http://127.0.0.1:8000/en";
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alerCtrl: AlertController,public modalCtrl: ModalController,public http:Http) {
     this.language = "selected-language";
-    this.technologies = databaseProvider.getTechnologies();
+    this.http.get(this.url+'/technologies',{headers : this.httpConfiguration()})
+    .map(res => res.json())
+    .subscribe((data) => {
+      this.technologies = data;
+    },error =>{
+      console.log(error);
+    });
+  }
+
+  httpConfiguration(): Headers{
+    let  headers = new Headers();
+    headers.append('Accept', 'application/xml');
+    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Headers','*');
+    return headers;
   }
   technologyData(){
     return this.technologies;
