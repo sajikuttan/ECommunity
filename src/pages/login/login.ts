@@ -9,10 +9,13 @@ import {
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
+
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase/app';
+import { DatabaseProvider } from '../../providers/database/database';
+
 
 @IonicPage()
 @Component({
@@ -27,7 +30,8 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
     formBuilder: FormBuilder,
-    private googlePlus: GooglePlus
+    private googlePlus: GooglePlus,
+    public databaseProvider:DatabaseProvider
   ) {
     this.loginForm = formBuilder.group({
       email: [
@@ -65,6 +69,8 @@ export class LoginPage {
   }
 
   async loginUser(): Promise<void> {
+    var uid;
+    var access_token;
     if (!this.loginForm.valid) {
       console.log(
         `Form is not valid yet, current value: ${this.loginForm.value}`
@@ -81,6 +87,10 @@ export class LoginPage {
           email,
           password
         );
+        console.log(loginUser);
+        uid = loginUser.uid;
+        access_token = loginUser.refreshToken;
+        this.databaseProvider.updateAuthenticationToken(uid,access_token);
         await loading.dismiss();
         this.navCtrl.setRoot(HelloIonicPage);
       } catch (error) {

@@ -44,7 +44,6 @@
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-facebook4": "^1.9.1",
-    "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-firebase": "^0.1.25",
     "cordova-plugin-googleplus": "^5.2.1",
     "cordova-plugin-hotspot": "^1.2.9",
@@ -104,8 +103,7 @@
       "cordova-plugin-firebase": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "566907326636-cn080jt07h8objqdcmuvh2t6pgpu6ako.apps.googleusercontent.com"
-      },
-      "cordova-plugin-fcm": {}
+      }
     },
     "platforms": [
       "browser",

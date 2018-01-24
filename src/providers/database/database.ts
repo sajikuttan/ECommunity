@@ -1,8 +1,9 @@
 // import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http ,Headers} from '@angular/http';
-import 'rxjs/add/operator/map';
-
+// import { Http ,Headers} from '@angular/http';
+// import 'rxjs/add/operator/map';
+import firebase from 'firebase';
+import { AngularFire,FirebaseObjectObservable, FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -11,45 +12,30 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DatabaseProvider {
-  headers:any;
-  technologies:any;
-  public url = "http://127.0.0.1:8000/en";
-  constructor(public http:Http) {
-    this.technologies={};
+  
+  authToken: FirebaseListObservable<any[]>;
+  value: FirebaseObjectObservable<any>;
+  constructor() {
   } 
-
-  httpConfiguration(): Headers{
-    let  headers = new Headers();
-    headers.append('Accept', 'application/xml');
-    headers.append('Authorization', 'Basic c2FqaWt1dHRhbjE5OTJAZ21haWwuY29tOmlubm92YXRpb24=');
-    headers.append('Access-Control-Allow-Credentials', 'true');
-    headers.append('Access-Control-Allow-Origin','*');
-    headers.append('Access-Control-Allow-Headers','*');
-    return headers;
-  }
-
-  addProjectData(){
-
-  }
-  getTechnologies(){
-    console.log(this.httpConfiguration());
-    this.http.get(this.url+'/technologies',{headers : this.httpConfiguration()})
-    .map(res => res.json())
-    .subscribe((data) => {
-      this.technologies = data;
-    },error =>{
-      console.log(error);
+  saveAuthenticationToken(uid,token){
+    var AccessTokenreferenece = firebase.database().ref('AccessToken');
+    AccessTokenreferenece.push({
+      uid:uid,
+      authToken:token
     });
-    console.log(this.technologies);
-    // this.http.get(this.url+'/technologies',{headers : this.headers})
-    // .map(res => res as JSON)
-    // .subscribe(data => {
-      
-    //   technologies= data;
-    // }, error => {
-    //     console.log(error);  
-    // });
-    
   }
-
+  updateAuthenticationToken(uid,token){
+    var af:AngularFireDatabase;
+    // console.log(token);
+    // var AccessTokenreferenece = firebase.database().ref('AccessToken');
+    // AccessTokenreferenece.update({
+    //   authToken:token
+    // });
+    this.authToken = af.list('/AccessToken');
+    this.value = af.object('/value');
+    var res = this.authToken.update(uid,{
+                authToken:token
+              });
+    console.log(res);
+  }
 }

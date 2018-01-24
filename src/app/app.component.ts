@@ -70,7 +70,6 @@ export class MyApp {
       { title: 'Technology', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
-      { title: 'Chats', component: Chats },
       { title: 'Workgroup', component: Assignment },
       { title: 'Profile', component: Profile },
       { title: 'Login', component: LoginPage }

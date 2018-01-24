@@ -16,6 +16,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SQLite } from '@ionic-native/sqlite';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Firebase } from '@ionic-native/firebase';
 
 //pages packages
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
@@ -47,6 +48,7 @@ import { YoutubeProvider } from '../providers/youtube/youtube';
 import { AuthProvider } from '../providers/auth/auth';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProjectListPage } from '../pages/project-list/project-list';
+
 
 
 @NgModule({
@@ -112,6 +114,7 @@ import { ProjectListPage } from '../pages/project-list/project-list';
     Keyboard,
     ScreenOrientation,
     SQLite,
+    Firebase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
     GooglePlus,

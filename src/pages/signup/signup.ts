@@ -9,9 +9,11 @@ import {
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
+import { DatabaseProvider } from '../../providers/database/database';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase/app';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -25,7 +27,9 @@ export class SignupPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
-    formBuilder: FormBuilder
+    formBuilder: FormBuilder,
+    public storage:Storage,
+    public databaseProvider:DatabaseProvider
   ) {
     this.signupForm = formBuilder.group({
       email: [
@@ -40,6 +44,8 @@ export class SignupPage {
   }
 
   async signupUser(): Promise<void> {
+    var access_token;
+    var uid;
     if (!this.signupForm.valid) {
       console.log(
         `Form is not valid yet, current value: ${this.signupForm.value}`
@@ -57,6 +63,14 @@ export class SignupPage {
           password
         );
         await loading.dismiss();
+        signupUser.getToken().then(token => {
+          console.log(token);
+          access_token = token;
+          uid = signupUser.uid;
+          this.databaseProvider.saveAuthenticationToken(uid,access_token);
+          this.storage.set('access_token',token);
+        }) // save the token server-side and use it to push notifications to this device
+        .catch(error => console.error('Error getting token', error));
         this.navCtrl.setRoot(HelloIonicPage);
       } catch (error) {
         await loading.dismiss();

@@ -18,15 +18,20 @@
     </ion-item>
     <ion-item>
       <ion-label stacked color="primary">Requirements</ion-label>
-      <ion-textarea [(ngModel)]="projectData.requirements" name="requirements" rows="6" required></ion-textarea>
+      <ion-textarea [(ngModel)]="projectData.requirements" name="requirements" rows="6"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label stacked color="primary">Technology Required</ion-label>
       <ion-input type="text" [(ngModel)]="projectData.technology_requirements" name="technology_requirements" requird></ion-input>
     </ion-item>
     <ion-item>
-        <ion-input type="text" [(ngModel)]="projectData.id" name="id" value="" #projectID ></ion-input>
-      </ion-item>
+        <ion-label stacked color="primary">Project Type</ion-label>
+        <ion-select [(ngModel)]="projectData.type" name="type">
+          <ion-option value="Website App Project">Website App Project</ion-option>
+          <ion-option value="Mobile App Project">Mobile App Project</ion-option>
+          <ion-option value="Desktop App Project">Desktop App Project</ion-option>
+        </ion-select>
+    </ion-item>
     <button ion-button type="submit" block>Add</button>
   </form>
 </ion-content>

@@ -7,6 +7,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
+import { Project } from '../project/project';
+import { Profile } from '../profile/profile';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -54,8 +56,14 @@ export class HelloIonicPage {
       this.navCtrl.push(Friends);
   }
   navigateToTehnology(){
-      this.navCtrl.push(Technology);
+      this.navCtrl.push(ListPage);
   }
+  navigateToProject(){
+    this.navCtrl.push(Project);
+  }
+  navigateToProfile(){
+    this.navCtrl.push(Profile);
+}
   isGroupShown(group) {
       return this.shownGroup === group;
   };

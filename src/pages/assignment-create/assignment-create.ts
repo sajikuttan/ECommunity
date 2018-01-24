@@ -43,7 +43,8 @@ export class AssignmentCreatePage {
       name: this.projectData.name,
       description:this.projectData.name,
       requirements:this.projectData.requirements,
-      technology:this.projectData.requirements
+      technology:this.projectData.requirements,
+      type:this.projectData.type
     });
     this.navCtrl.push(AssignmentDetailsPage,{
       projectData: this.projectData
