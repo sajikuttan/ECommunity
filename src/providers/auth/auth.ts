@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseTokenGenerator } from 'firebase-token-generator';
-import firebase from 'firebase';
+import firebase, { database } from 'firebase';
 
 @Injectable()
 export class AuthProvider {

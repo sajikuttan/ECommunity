@@ -9,7 +9,7 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let assignment of assignmentList;let i = index;" (click)="goToAssignmentDetails(i)">
+    <ion-item *ngFor="let assignment of assignmentList;let i = index;" (click)="goToAssignmentDetails(assignment.key)">
       <h1>{{assignment.name}}</h1>
       <p>{{assignment.description}}</p>
     </ion-item>

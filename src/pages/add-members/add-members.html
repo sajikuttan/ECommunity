@@ -1,0 +1,36 @@
+<!--
+  Generated template for the AddMembersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>AddMembers</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let friend of friends;">
+        <ion-grid>
+          <ion-row >
+            <ion-col col-8>
+              <span (click)="viewProfile()">{{friend.name}}</span>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button (click)="addMemebers(friend.key,friend.name)">
+                <span>Add</span>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+  </ion-list>
+  <ion-list *ngIf="memberadd" >
+    <button ion-button (click)="addtoProject()">Add To the Project</button>
+  </ion-list>
+</ion-content>

@@ -22,11 +22,11 @@
         <ion-item *ngFor="let people of peopleList;">
           <ion-grid>
             <ion-row>
-              <ion-col col-8 (click)="viewProfile()">
-                <span >{{people}}</span>
+              <ion-col col-8 (click)="viewProfile(people.email)">
+                <span >{{people.email}}</span>
               </ion-col>
               <ion-col col-4>
-                <button ion-button>Add Friend</button>
+                <button ion-button (click)="addFriend(people.email,people.key,$event)">Add Friend</button>
               </ion-col>
             </ion-row>
           </ion-grid>

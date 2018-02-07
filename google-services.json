@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "566907326636",
+    "firebase_url": "https://icode-177318.firebaseio.com",
+    "project_id": "icode-177318",
+    "storage_bucket": "icode-177318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566907326636:android:c51fe3c31e46f548",
+        "android_client_info": {
+          "package_name": "com.icode.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566907326636-ne9s20vdsqcqpdup85k8ji23vc1jrlmv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-HHCCbxcqqlenwnRPc_SaL-kYu0ffe6Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

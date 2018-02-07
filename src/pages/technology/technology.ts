@@ -16,7 +16,9 @@ export class Technology {
 
   technologies = ['C#','C','JAVA','HTML','PYTHON','SQL','CSS'];
   buttonClicked: boolean = false;
+  data:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.data={};
   }
 
   ionViewDidLoad() {
@@ -27,6 +29,9 @@ export class Technology {
   }
   technologyForm(){
 
+  }
+  addCourses(event){
+    console.log(event);
   }
   goBack(){
   	this.navCtrl.pop();

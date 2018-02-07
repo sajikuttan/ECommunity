@@ -17,6 +17,7 @@ import { SQLite } from '@ionic-native/sqlite';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Firebase } from '@ionic-native/firebase';
+import { FCM } from '@ionic-native/fcm';
 
 //pages packages
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
@@ -37,6 +38,7 @@ import { AssignmentCreatePage } from '../pages/assignment-create/assignment-crea
 import { AssignmentDetailsPage } from '../pages/assignment-details/assignment-details';
 import { Group } from '../pages/group/group';
 import { SettingsPage } from '../pages/settings/settings';
+import { AddMembersPage } from '../pages/add-members/add-members';
 
 //pipes packages
 import { Data } from '../pipes/data';
@@ -48,6 +50,8 @@ import { YoutubeProvider } from '../providers/youtube/youtube';
 import { AuthProvider } from '../providers/auth/auth';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProjectListPage } from '../pages/project-list/project-list';
+import { CoursesProvider } from '../providers/courses/courses';
+import { FriendConnectProvider } from '../providers/friend-connect/friend-connect';
 
 
 
@@ -73,7 +77,8 @@ import { ProjectListPage } from '../pages/project-list/project-list';
     SettingsPage,
     AssignmentCreatePage,
     AssignmentDetailsPage,
-    ProjectListPage
+    ProjectListPage,
+    AddMembersPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +109,8 @@ import { ProjectListPage } from '../pages/project-list/project-list';
     SettingsPage,
     AssignmentCreatePage,
     AssignmentDetailsPage,
-    ProjectListPage
+    ProjectListPage,
+    AddMembersPage
   ],
   providers: [
     StatusBar,
@@ -115,14 +121,17 @@ import { ProjectListPage } from '../pages/project-list/project-list';
     ScreenOrientation,
     SQLite,
     Firebase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FCM,
     Facebook,
     GooglePlus,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataSearch,
     SettingsProvider,
     YoutubeProvider,
     AuthProvider,
-    DatabaseProvider
+    DatabaseProvider,
+    CoursesProvider,
+    FriendConnectProvider
   ]
 })
 export class AppModule {}

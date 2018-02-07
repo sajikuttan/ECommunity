@@ -15,6 +15,7 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase/app';
 import { DatabaseProvider } from '../../providers/database/database';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -87,7 +88,8 @@ export class LoginPage {
           email,
           password
         );
-        console.log(loginUser);
+        MyApp.userName = loginUser.email;
+        console.log(loginUser.displayName);
         uid = loginUser.uid;
         access_token = loginUser.refreshToken;
         this.databaseProvider.updateAuthenticationToken(uid,access_token);

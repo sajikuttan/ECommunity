@@ -13,10 +13,10 @@
           <ion-grid>
             <ion-row >
               <ion-col col-8>
-                <span (click)="viewProfile()">{{friend}}</span>
+                <span (click)="viewProfile(friend.email)">{{friend.email}}</span>
               </ion-col>
               <ion-col col-4>
-                <button ion-button (click)="openChat(friend)">
+                <button ion-button (click)="openChat(friend.email,friend.key)">
                   <span>Chat</span><span><ion-icon name="chatboxes"></ion-icon></span>
                 </button>
               </ion-col>

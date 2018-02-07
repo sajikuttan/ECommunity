@@ -18,6 +18,7 @@ import { Storage } from '@ionic/storage';
 import { SettingsProvider } from '../providers/settings/settings';
 import firebase from 'firebase';
 import { firebaseConfig } from './credentials';
+import { AddMembersPage } from '../pages/add-members/add-members';
 
 @Component({
   templateUrl: 'app.html',
@@ -30,7 +31,7 @@ export class MyApp {
   loader: any;
   cards: Array<any>;
   pages: Array<{title: string, component: any}>;
-  public static userName = "Saji";
+  public static userName;
   public chats = [];
   constructor(
     public platform: Platform,
@@ -43,15 +44,15 @@ export class MyApp {
     this.initializeApp();
     this.presentLoading();
     firebase.initializeApp(firebaseConfig);
-    // const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-    //   if (user) {
-    //     this.nav.setRoot(HelloIonicPage);
-    //     unsubscribe();
-    //   } else {
-    //     this.nav.setRoot(LoginPage);
-    //     unsubscribe();
-    //   }
-    // });
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.nav.setRoot(HelloIonicPage);
+        unsubscribe();
+      } else {
+        this.nav.setRoot(LoginPage);
+        unsubscribe();
+      }
+    });
     this.storage.get('introShown').then((result) => {
  
         if(result){
@@ -72,7 +73,8 @@ export class MyApp {
       { title: 'Friends', component: Friends },
       { title: 'Workgroup', component: Assignment },
       { title: 'Profile', component: Profile },
-      { title: 'Login', component: LoginPage }
+      { title: 'Login', component: LoginPage },
+      { title: 'Member', component:AddMembersPage}
     ];
   }
 

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chats } from '../chat/chat';
 import { Profile } from '../profile/profile';
 import { People } from '../people/people';
+import firebase from 'firebase';
+import { FriendConnectProvider } from '../../providers/friend-connect/friend-connect';
 /**
  * Generated class for the Friends page.
  *
@@ -15,12 +17,16 @@ import { People } from '../people/people';
   templateUrl: 'friends.html',
 })
 export class Friends {
+  activeTab: string;
   friend : string;
   searchTerm: string = '';
-  
-  public friends = ['Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe','Jhon Doe'];
+  ref:any;
+  public friends = [];
+  requests:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {    
+  constructor(public navCtrl: NavController, public navParams: NavParams,public friendConnect:FriendConnectProvider) {   
+    this.ref = firebase.database().ref('userProfile'); 
+    this.activeTab = "friends";
     if(this.navParams.get('param1') != null){
       this.friend = this.navParams.get('param1');
     }else{
@@ -29,19 +35,37 @@ export class Friends {
   }
 
   ionViewDidLoad() {
-    this.friends;
+    this.getRequests();
+    // this.ref.on('value',data => {
+  	// 	let tmp = [];
+  	// 	data.forEach( data => {
+  	// 		tmp.push({
+  	// 			key: data.key,
+  	// 			name: data.val().name,
+  	// 			email: data.val().email
+  	// 		})
+  	// 	});
+  	// 	this.friends = tmp;
+  	// });
+  }
+  async getRequests(){
+    let uid = firebase.auth().currentUser.uid;
+    let friend = await this.friendConnect.getRequest(uid)
+    console.log(friend);
   }
   addFriend(){
     this.navCtrl.push(People);
   }
-  openChat(chat){
+  openChat(chat,key){
     this.navCtrl.push(Chats, {
-      chatName: chat
+      chatName: chat,
+      key:key
     });
   }
   viewProfile(){
     this.navCtrl.push(Profile,{
-      profile_viewer: 'sendMessage'
+      profile_viewer: 'sendMessage',
+      role:1
     });
   }
 }

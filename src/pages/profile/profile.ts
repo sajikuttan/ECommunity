@@ -5,6 +5,7 @@ import { Assignment } from '../assignment/assignment';
 import { Technology } from '../technology/technology';
 import { People } from '../people/people';
 import { Chats } from '../chat/chat';
+import { MyApp } from '../../app/app.component';
 /**
  * Generated class for the Profile page.
  *
@@ -22,7 +23,12 @@ export class Profile {
   template_identifier: string;
   selectedTheme :string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.username = navParams.get('username');
+    this.username = navParams.get('username');
+    console.log(navParams.get('role'));
+    if(navParams.get('role')== null){
+      this.username= MyApp.userName;
+    }
+  	
   	this.template_identifier = navParams.get('profile_viewer');
     if(this.template_identifier==null){
       this.template_identifier='connectMoreFriend';

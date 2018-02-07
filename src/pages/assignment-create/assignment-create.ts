@@ -18,6 +18,7 @@ export class AssignmentCreatePage {
   activeTab:any;
   projectData: any;
   ref;
+  key;
   assignment_id:number;
   @ViewChild('projectId') projectId ;
 
@@ -26,6 +27,7 @@ export class AssignmentCreatePage {
     this.projectData={};
     this.activeTab="details";
     this.ref = firebase.database().ref('Project');
+    this.key = firebase.database().ref('Project').key;
     this.ref.on("child_added", function(data) {
       data.forEach(function(data) {
         console.log(" " + data.key + " " + data.val());
@@ -39,13 +41,24 @@ export class AssignmentCreatePage {
   }
   regiterForm(){
     console.log(this.projectData);
+
+    this.ref = firebase.database().ref('Project/');
+    var uid =firebase.auth().currentUser.uid;
+    let response =this.ref.push({
+                    name: this.projectData.name,
+                    description:this.projectData.long_description,
+                    technology:this.projectData.requirements,
+                    type:this.projectData.type
+                  });
+
+    this.ref = firebase.database().ref('ProjectMembers/');
+    var responseKey  = response.key;
     this.ref.push({
-      name: this.projectData.name,
-      description:this.projectData.name,
-      requirements:this.projectData.requirements,
-      technology:this.projectData.requirements,
-      type:this.projectData.type
+      memberKey: uid,
+      projectKey:responseKey
     });
+    
+    console.log(responseKey);
     this.navCtrl.push(AssignmentDetailsPage,{
       projectData: this.projectData
     });

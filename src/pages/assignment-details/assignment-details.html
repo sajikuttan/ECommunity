@@ -22,23 +22,23 @@
     </ion-toolbar>
     <div [ngSwitch]="activeTab">
       <ion-list *ngSwitchCase="'details'" >
-        <h1>Project Name : {{projectName}}</h1>
+        <h1>Project Name : {{projectDetails.name}}</h1>
         <p>
-          {{projectData.long_description}}
+          {{projectDetails.description}}
         </p>
       </ion-list>
       <ion-list *ngSwitchCase="'requirements'">
         <p>
-            {{projectData.requirements}}
+            {{projectDetails.requirements}}
         </p>
       </ion-list>
       <ion-list *ngSwitchCase="'members'">
         <ion-list>
-            <ion-item *ngFor="let member of projectData.members;">
+            <ion-item *ngFor="let member of projectMembers;">
               <ion-grid>
                 <ion-row>
                   <ion-col col-8>
-                    <span >{{member}}</span>
+                    <span >{{member.email}}</span>
                   </ion-col>
                   <ion-col col-4>
                       <button ion-button>Remove</button>

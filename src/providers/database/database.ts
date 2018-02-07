@@ -31,11 +31,11 @@ export class DatabaseProvider {
     // AccessTokenreferenece.update({
     //   authToken:token
     // });
-    this.authToken = af.list('/AccessToken');
-    this.value = af.object('/value');
-    var res = this.authToken.update(uid,{
-                authToken:token
-              });
-    console.log(res);
+    // this.authToken = af.list('/AccessToken');
+    // this.value = af.object('/value');
+    // var res = this.authToken.update(uid,{
+    //             authToken:token
+    //           });
+    // console.log(res);
   }
 }

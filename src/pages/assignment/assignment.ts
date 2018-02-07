@@ -15,37 +15,45 @@ import { AssignmentDetailsPage } from '../assignment-details/assignment-details'
   templateUrl: 'assignment.html',
 })
 export class Assignment {
-  assignmentRef;
-  assignmentList:any;
+  public  assignmentRef;
+  public assignmentList:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.assignmentRef = firebase.database().ref('Project');
+    
   }
-
-  ionViewDidLoad() {
-    this.assignmentRef.on('value',data => {
-  		let tmp = [];
-  		data.forEach( data => {
-  			tmp.push({
-  				key: data.key,
-  				id: data.val().id,
-  				name: data.val().name,
-          description: data.val().description,
-          requirements:data.val().requirements
-  			})
+  async getWorkgroup(){
+    let uid = firebase.auth().currentUser.uid;
+    firebase.database().ref('ProjectMembers').orderByChild("memberKey").equalTo(uid).on("child_added", response => {
+      let project_key =[response.val().projectKey];
+      console.log(project_key);
+      let tmp = [];
+      project_key.forEach(key => {
+        firebase.database().ref('Project')
+        .child(key)
+        .once('value',response =>{
+          tmp.push({
+            key: response.key,
+            name: response.val().name,
+            description: response.val().description
+          });
+          console.log(tmp);
+          if(tmp){
+            this.assignmentList = tmp;
+          }
+        });
       });
-      this.assignmentList = tmp;
     });
+  }
+  ionViewDidLoad() {
+    this.getWorkgroup();
   }
 
   createCustomProject(){
   	this.navCtrl.push(AssignmentCreatePage);
   }
 
-  goToAssignmentDetails(index){
-    console.log(this.assignmentList[index]);
+  goToAssignmentDetails(key){
     this.navCtrl.push(AssignmentDetailsPage,{
-      projectData: this.assignmentList[index]
+      key: key
     });
   }
-
 }
