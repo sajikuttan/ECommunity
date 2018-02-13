@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AssignmentCreatePage } from '../assignment-create/assignment-create';
 import firebase from 'firebase/app';
 import { AssignmentDetailsPage } from '../assignment-details/assignment-details';
+import { Chats } from '../chat/chat';
 /**
  * Generated class for the Assignment page.
  *
@@ -54,6 +55,13 @@ export class Assignment {
   goToAssignmentDetails(key){
     this.navCtrl.push(AssignmentDetailsPage,{
       key: key
+    });
+  }
+  openChat(key,name){
+    this.navCtrl.push(Chats,{
+      key:key,
+      chatName:name,
+      isGroup:true
     });
   }
 }

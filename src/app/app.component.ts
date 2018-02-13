@@ -18,7 +18,6 @@ import { Storage } from '@ionic/storage';
 import { SettingsProvider } from '../providers/settings/settings';
 import firebase from 'firebase';
 import { firebaseConfig } from './credentials';
-import { AddMembersPage } from '../pages/add-members/add-members';
 
 @Component({
   templateUrl: 'app.html',
@@ -68,13 +67,12 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Dashboard', component: HelloIonicPage },
-      { title: 'Technology', component: ListPage },
+      { title: 'Courses', component: ListPage },
       { title: 'Project', component: Project },
       { title: 'Friends', component: Friends },
       { title: 'Workgroup', component: Assignment },
       { title: 'Profile', component: Profile },
-      { title: 'Login', component: LoginPage },
-      { title: 'Member', component:AddMembersPage}
+      { title: 'Login', component: LoginPage }
     ];
   }
 

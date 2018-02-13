@@ -3,18 +3,29 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{project_title}}</ion-title> 
+    <ion-title>{{projectName}}</ion-title> 
+    <button ion-button (click)="joinNow(projectDetails.key)">
+      Join Now <ion-icon name="add"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-item-divider>
-    Reqirements
+    <h1>Project Description</h1>
   </ion-item-divider>
   <ion-item>
+    <p>
+      {{projectDetails.description}}
+    </p>
   </ion-item>
   <ion-item-divider>
-    Description
+    <h1>Project Members</h1>
   </ion-item-divider>
   <ion-item>
+    <ion-list>
+        <ion-item *ngFor="let member of projectMembers;">
+          {{member.email}}
+        </ion-item>
+    </ion-list>
   </ion-item>
 </ion-content>

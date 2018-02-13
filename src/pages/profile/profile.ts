@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Friends } from '../friends/friends';
 import { Assignment } from '../assignment/assignment';
 import { Technology } from '../technology/technology';
 import { People } from '../people/people';
 import { Chats } from '../chat/chat';
 import { MyApp } from '../../app/app.component';
+import firebase from 'firebase';
 /**
  * Generated class for the Profile page.
  *
@@ -22,8 +23,11 @@ export class Profile {
   username :string;
   template_identifier: string;
   selectedTheme :string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  key:string;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
     this.username = navParams.get('username');
+    this.key = (navParams.get('key')!=null)?navParams.get('key'):firebase.auth().currentUser.uid;
+    
     console.log(navParams.get('role'));
     if(navParams.get('role')== null){
       this.username= MyApp.userName;
@@ -37,10 +41,14 @@ export class Profile {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Profile');
   }
   viewFriends(){
-  	this.navCtrl.push(Friends);
+  	let alert = this.alertCtrl.create({
+        title: 'Friends',
+        message: 'friends',
+        buttons: ['Dismiss']
+    });
+    alert.present();
   }
   viewProjects(){
   	this.navCtrl.push(Assignment);

@@ -9,27 +9,16 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="headerTitle">{{headerTitle}} Projects</ion-title>
+    <ion-title *ngIf="type">{{type}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
   <ion-list>
-    <ion-item (click)="projectDetails()">
-      <h1>Student Registration Form Website</h1>
-    </ion-item>
-    <ion-item (click)="projectDetails()">
-      <h1>Student Registration Form Website</h1>
-    </ion-item>
-    <ion-item (click)="projectDetails()">
-      <h1>Student Registration Form Website</h1>
-    </ion-item>
-    <ion-item (click)="projectDetails()">
-      <h1>Student Registration Form Website</h1>
-    </ion-item>
-    <ion-item (click)="projectDetails()">
-      <h1>Student Registration Form Website</h1>
+    <ion-item *ngFor="let project of project_list;let i = index;" (click)="projectDetails(project.key)">
+      <h1>{{project.name}}</h1>
+      <p>{{project.description}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

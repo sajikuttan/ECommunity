@@ -27,8 +27,6 @@ export class ItemDetailsPage {
         console.log('you are online');
       });*/
   }
-  ionViewWillEnter(): void {
-  } 
   getArrayOfIds(){
     var arr = this.youtubeProvider.video_id_array;
     console.log(this.youtubeProvider.video_id_array);

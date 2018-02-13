@@ -17,12 +17,12 @@ import { FriendConnectProvider } from '../../providers/friend-connect/friend-con
   templateUrl: 'friends.html',
 })
 export class Friends {
-  activeTab: string;
+  activeTab;
   friend : string;
   searchTerm: string = '';
   ref:any;
   public friends = [];
-  requests:any;
+  public requests = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public friendConnect:FriendConnectProvider) {   
     this.ref = firebase.database().ref('userProfile'); 
@@ -32,26 +32,53 @@ export class Friends {
     }else{
       this.friend = "chats";
     }
+    this.getRequests();
+    this.getFriends();
   }
 
   ionViewDidLoad() {
-    this.getRequests();
-    // this.ref.on('value',data => {
-  	// 	let tmp = [];
-  	// 	data.forEach( data => {
-  	// 		tmp.push({
-  	// 			key: data.key,
-  	// 			name: data.val().name,
-  	// 			email: data.val().email
-  	// 		})
-  	// 	});
-  	// 	this.friends = tmp;
-  	// });
   }
   async getRequests(){
     let uid = firebase.auth().currentUser.uid;
-    let friend = await this.friendConnect.getRequest(uid)
-    console.log(friend);
+    try{
+      await firebase.database().ref('userProfile/'+uid+'/friends/')
+      .orderByChild('status')
+      .equalTo(1)
+      .on('child_added',data=>{
+        let key=data.key;
+        console.log(key);
+        firebase.database().ref('userProfile/'+key)
+        .on('value',data=>{ 
+          this.requests.push({
+            key:data.key,
+            email:data.val().email
+          });
+        });
+      });
+    }catch(err){
+      console.log(err);
+    }
+  }
+  async getFriends(){
+    let uid = firebase.auth().currentUser.uid;
+    try{
+      await firebase.database().ref('userProfile/'+uid+'/friends/')
+      .orderByChild('status')
+      .equalTo(2)
+      .on('child_added',data=>{
+        let key=data.key;
+        console.log(key);
+        firebase.database().ref('userProfile/'+key)
+        .on('value',data=>{ 
+          this.friends.push({
+            key:data.key,
+            email:data.val().email
+          });
+        });
+      });      
+    }catch(err){
+      console.log(err);
+    }
   }
   addFriend(){
     this.navCtrl.push(People);
@@ -67,5 +94,8 @@ export class Friends {
       profile_viewer: 'sendMessage',
       role:1
     });
+  }
+  acceptRequest(key){
+    this.friendConnect.acceptRequest(key);
   }
 }

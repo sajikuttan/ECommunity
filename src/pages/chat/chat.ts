@@ -16,6 +16,7 @@ import { Http } from '@angular/http';
   templateUrl: 'chat.html',
 })
 export class Chats {
+  isGroup: any;
   chatName : string;  
   chat_input:string;
   chats = [];
@@ -26,6 +27,7 @@ export class Chats {
   messagesList;
   constructor(public navCtrl: NavController, public navParams: NavParams,private keyboard: Keyboard,public http: Http) {
     this.chatName = navParams.get('chatName');
+    this.isGroup =navParams.get('isGroup');
     this.key = navParams.get('key');
     this.name = MyApp.userName;
     console.log(this.name);
@@ -39,23 +41,38 @@ export class Chats {
   
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Chat');
-    this.ref = firebase.database().ref('messages/'+this.key);
-    this.ref.on('value',data => {
-  		let tmp = [];
-  		data.forEach( data => {
-  			tmp.push({
-  				key: data.key,
-  				name: data.val().name,
-          message: data.val().message,
-          toname:data.val().toname
-  			})
-  		});
-  		this.messagesList = tmp;
-  	});
+    if(this.isGroup!=true){
+      this.ref = firebase.database().ref('messages/'+this.key);
+      this.ref.on('value',data => {
+        let tmp = [];
+        data.forEach( data => {
+          tmp.push({
+            key: data.key,
+            fromname: data.val().fromname,
+            message: data.val().message,
+            toname:data.val().toname
+          })
+        });
+        this.messagesList = tmp;
+      });
+    }else{
+      this.ref = firebase.database().ref('Project/'+this.key+'/messages');
+      this.ref.on('value',data => {
+        let tmp = [];
+        data.forEach( data => {
+          tmp.push({
+            key: data.key,
+            fromname: data.val().fromname,
+            message: data.val().message,
+            toname:data.val().toname
+          })
+        });
+        this.messagesList = tmp;
+      });
+    }
   }
-    send(){
-      // add new data to firebase
+  send(){
+    if(this.isGroup!=true){
       this.ref = firebase.database().ref('messages/'+this.key);
       this.ref.push({
         key:this.key,
@@ -63,7 +80,22 @@ export class Chats {
         fromname:this.name,
         toname:this.chatName
       });
+      let key = firebase.auth().currentUser.uid;
+      this.ref = firebase.database().ref('messages/'+key);
+      this.ref.push({
+        key:this.key,
+        message: this.newmessage,
+        fromname:this.name,
+        toname:this.chatName
+      });
+    }else{
+      this.ref = firebase.database().ref('Project/'+this.key+'/messages');
+      this.ref.push({
+        key:this.key,
+        message: this.newmessage,
+        fromname:this.name,
+        toname:this.chatName
+      });
     }
-  
-
+  }
 }

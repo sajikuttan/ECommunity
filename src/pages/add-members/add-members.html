@@ -19,10 +19,10 @@
         <ion-grid>
           <ion-row >
             <ion-col col-8>
-              <span (click)="viewProfile()">{{friend.name}}</span>
+              <span (click)="viewProfile()">{{friend.email}}</span>
             </ion-col>
             <ion-col col-4>
-              <button ion-button (click)="addMemebers(friend.key,friend.name)">
+              <button ion-button (click)="addMemebers(friend.key,friend.email)">
                 <span>Add</span>
               </button>
             </ion-col>

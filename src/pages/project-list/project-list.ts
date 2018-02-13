@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProjectDetails } from '../project-details/project-details';
-
+import firebase from 'firebase';
 /**
  * Generated class for the ProjectListPage page.
  *
@@ -16,16 +16,33 @@ import { ProjectDetails } from '../project-details/project-details';
 })
 export class ProjectListPage {
 
-  headerTitle:string;
+  public type:string;
+  public project_list = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.headerTitle = navParams.get('projectType');
+    this.type = navParams.get('projectType');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProjectListPage');
+    this.projectList();
   }
 
-  projectDetails(){
-    this.navCtrl.push(ProjectDetails);
+  projectList(){
+    firebase.database().ref('Project/')
+    .orderByChild('type')
+    .equalTo(this.type)
+    .on('child_added',data=>{
+      this.project_list.push({
+        key:data.key,
+        name:data.val().name,
+        description:data.val().description
+      });
+      console.log(this.project_list);
+    });
+  }
+
+  projectDetails(key){
+    this.navCtrl.push(ProjectDetails,{
+      key:key
+    });
   }
 }

@@ -16,7 +16,7 @@ export class FriendConnectProvider {
 
   sendRequest(uid,friendid){
     firebase.database().ref('userProfile/'+friendid+'/friends/'+uid)
-    .push({status:1});
+    .set({status:1});
   }
   getFriends(uid){
     firebase.database().ref('userProfile/'+uid+'/friends')
@@ -26,9 +26,9 @@ export class FriendConnectProvider {
       console.log(data.val());
     });
   }
-  getRequest(uid):any{
+  async getRequest(uid){
     try{
-      firebase.database().ref('userProfile/'+uid+'/friends')
+      await firebase.database().ref('userProfile/'+uid+'/friends')
       .on('child_added',data=>{
         let friends = [data.key];
         friends.forEach(key =>{
@@ -39,12 +39,27 @@ export class FriendConnectProvider {
             });
           });
         });
+        console.log(this.friendsList);
         return this.friendsList;
       });
     }catch(err){
       console.log(err);
     }
     
+  }
+  acceptRequest(key){
+    let uid = firebase.auth().currentUser.uid;
+    let UserRef = firebase.database().ref('userProfile/'+uid+'/friends/'+key);
+    UserRef.on('child_added',data=>{
+      UserRef = firebase.database().ref('userProfile/'+uid+'/friends/'+key);
+      UserRef.update({
+        status:2
+      })
+    });
+    UserRef = firebase.database().ref('userProfile/'+key+'/friends/'+uid);
+    UserRef.set({
+      status:2
+    });
   }
 
 }

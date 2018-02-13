@@ -18,6 +18,7 @@ import { AddMembersPage } from '../add-members/add-members';
 export class AssignmentDetailsPage {
   projectData:any;
   projectMembers:any;
+  projectRequestMembers:any;
   activeTab;
   projectName:string;
   ref;
@@ -29,10 +30,11 @@ export class AssignmentDetailsPage {
     this.activeTab = "details";
     this.projectDetails={};
     this.projectMembers=[];
+    this.projectRequestMembers=[];
+    this.getRequests(this.key);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AssignmentDetailsPage');
     
     this.ref = firebase.database().ref('Project/'+this.key);
     this.ref.on('value',data => {
@@ -60,6 +62,7 @@ export class AssignmentDetailsPage {
               key:data.key,
               email:data.val().email
             });
+            console.log(tmp);
           });
         });
       });
@@ -83,5 +86,43 @@ export class AssignmentDetailsPage {
     });
     
     profileModal.present();
+  }
+  getRequests(key){
+    let tmp = [];
+    firebase.database().ref('Requests/'+key)
+    .on('child_added',data=>{
+      firebase.database().ref('userProfile/'+data.val().uid)
+      .on('value',data=>{
+        this.projectRequestMembers.push({
+          key:data.key,
+          email:data.val().email
+        });
+      });
+    });
+    console.log(this.projectRequestMembers);
+  }
+  removeFromProject(key){
+    let memberKeys = [];
+    firebase.database().ref('ProjectMembers').orderByChild('memberkey').equalTo(key).on('child_added',data=>{
+      memberKeys.push({
+        key:data.val().memberKey,
+        project_key:data.val().projectKey
+      });
+      console.log(memberKeys);
+    });
+  }
+  addMemmberToProject(key){
+    firebase.database().ref('ProjectMembers')
+    .push({
+      projectKey:this.key,
+      memberKey:key
+    });
+    firebase.database().ref('Requests/'+this.key)
+    .orderByChild('uid')
+    .equalTo(key)
+    .once('child_added',data=>{
+      firebase.database().ref('Requests/'+this.key+'/'+data.key)
+      .remove();
+    });
   }
 }

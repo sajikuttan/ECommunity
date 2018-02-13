@@ -9,9 +9,20 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let assignment of assignmentList;let i = index;" (click)="goToAssignmentDetails(assignment.key)">
-      <h1>{{assignment.name}}</h1>
-      <p>{{assignment.description}}</p>
+    <ion-item *ngFor="let assignment of assignmentList;let i = index;">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8 (click)="goToAssignmentDetails(assignment.key)">
+            <h1>{{assignment.name}}</h1>
+            <p>{{assignment.description}}</p>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button (click)="openChat(assignment.key,assignment.name)">
+              <span>Chat</span><span><ion-icon name="chatboxes"></ion-icon></span>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
     <ion-fab right bottom>

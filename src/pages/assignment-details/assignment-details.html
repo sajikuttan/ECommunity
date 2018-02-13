@@ -16,7 +16,10 @@
           Requiremens
         </ion-segment-button>
         <ion-segment-button value="members">
-            Members
+          Members
+        </ion-segment-button>
+        <ion-segment-button value="requests">
+          Requests
         </ion-segment-button>
       </ion-segment>
     </ion-toolbar>
@@ -41,7 +44,7 @@
                     <span >{{member.email}}</span>
                   </ion-col>
                   <ion-col col-4>
-                      <button ion-button>Remove</button>
+                      <button ion-button (click)="removeFromProject(member.key)">Remove</button>
                     </ion-col>
                 </ion-row>
               </ion-grid>
@@ -52,6 +55,22 @@
               <ion-icon name="add"></ion-icon>
             </button>
           </ion-fab>
+      </ion-list>
+      <ion-list *ngSwitchCase="'requests'">
+        <ion-list>
+          <ion-item *ngFor="let member of projectRequestMembers;">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-8>
+                  <span >{{member.email}}</span>
+                </ion-col>
+                <ion-col col-4>
+                    <button ion-button (click)="addMemmberToProject(member.key)">Add</button>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
       </ion-list>
     </div>
 </ion-content>
