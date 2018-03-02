@@ -3,10 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{projectName}}</ion-title> 
-    <button ion-button (click)="joinNow(projectDetails.key)">
-      Join Now <ion-icon name="add"></ion-icon>
-    </button>
+    <ion-title>{{projectName}}</ion-title>
+    <div [ngSwitch]="active_button">
+      <button *ngSwitchCase="'join'"  ion-button style="float:right" (click)="joinNow(projectDetails.key)">
+        Join Now <ion-icon name="add"></ion-icon>
+      </button>
+      <button *ngSwitchCase="'sent'"  ion-button style="float:right">
+        Request Sent
+      </button>
+      <button *ngSwitchCase="'joined'"  ion-button style="float:right">
+        joined
+      </button>
+    </div>
   </ion-navbar>
 </ion-header>
 <ion-content>

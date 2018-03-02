@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import {SpeechRecognition} from '@ionic-native/speech-recognition';
-import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from '@angular/http'; 
 import { SwingModule } from 'angular2-swing';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -122,7 +121,6 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     SQLite,
     Firebase,
     FCM,
-    Facebook,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataSearch,
