@@ -24,7 +24,7 @@ export class ProjectDetails {
   status;
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
     this.key = navParams.get('key');
-
+    this.getProjectDetails();
   }
 
   ionViewDidLoad() {
@@ -32,7 +32,7 @@ export class ProjectDetails {
   getProjectDetails(){
     let uid = firebase.auth().currentUser.uid;
     let ref = firebase.database().ref('Project/'+this.key);
-    ref.on('value',data => {
+    ref.once('value',data => {
       let project_key =data.key;
       this.projectDetails = {
         key:data.key,

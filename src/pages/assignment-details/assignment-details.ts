@@ -101,15 +101,22 @@ export class AssignmentDetailsPage {
     });
     console.log(this.projectRequestMembers);
   }
-  removeFromProject(key){
-    let memberKeys = [];
-    firebase.database().ref('ProjectMembers').orderByChild('memberkey').equalTo(key).on('child_added',data=>{
-      memberKeys.push({
-        key:data.val().memberKey,
+  removeFromProject(memberkey,projectKey){
+    let tmp = [];
+    let value =[];
+    firebase.database().ref('ProjectMembers').orderByChild('projectKey').equalTo(projectKey).on('child_added',data=>{
+      tmp.push({
+        key:data.key,
+        memberKey:data.val().memberKey,
         project_key:data.val().projectKey
       });
-      console.log(memberKeys);
     });
+    console.log(tmp);
+    value = tmp.find(data => data.memberKey == memberkey);
+    console.log(value);
+    let key = value['key'];
+    console.log(key);
+    firebase.database().ref('ProjectMembers/'+key).remove();
   }
   addMemmberToProject(key){
     firebase.database().ref('ProjectMembers')

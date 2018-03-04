@@ -17,7 +17,7 @@ import { Chats } from '../chat/chat';
 })
 export class Assignment {
   public  assignmentRef;
-  public assignmentList:any;
+  public assignmentList=[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
@@ -30,17 +30,14 @@ export class Assignment {
       project_key.forEach(key => {
         firebase.database().ref('Project')
         .child(key)
-        .once('value',response =>{
-          tmp.push({
+        .on('value',response =>{
+          this.assignmentList.push({
             key: response.key,
             name: response.val().name,
             description: response.val().description
           });
-          console.log(tmp);
-          if(tmp){
-            this.assignmentList = tmp;
-          }
         });
+        
       });
     });
   }

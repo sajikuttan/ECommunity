@@ -12,7 +12,6 @@ export class YoutubeProvider {
   channel_arr:JSON;
   video_id_array =[];
   constructor(public http: HttpClient) {
-    console.log('Hello YoutubeProvider Provider');
     this.getVideoChannel();
   }
   getVideoChannel(){

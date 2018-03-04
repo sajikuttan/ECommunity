@@ -3,6 +3,7 @@ import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { Http ,Headers} from '@angular/http';
 import { Technology } from '../technology/technology';
+import { YoutubeProvider } from '../../providers/youtube/youtube';
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -10,8 +11,8 @@ import { Technology } from '../technology/technology';
 export class ListPage {
   isValid = false;
   technologies = ['C#','C','JAVA','HTML','PYTHON','SQL','CSS'];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public http:Http) {
-  
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public http:Http,public youtubeProvider:YoutubeProvider) {
+  youtubeProvider.getVideoChannel();
   }
 
   presentTechnologyModal() {
