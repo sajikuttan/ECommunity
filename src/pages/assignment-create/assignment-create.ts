@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AssignmentDetailsPage } from '../assignment-details/assignment-details';
 import firebase from 'firebase/app';
+import { Assignment } from '../assignment/assignment';
 /**
  * Generated class for the AssignmentCreatePage page.
  *
@@ -47,7 +47,6 @@ export class AssignmentCreatePage {
     let response =this.ref.push({
                     name: this.projectData.name,
                     description:this.projectData.long_description,
-                    technology:this.projectData.requirements,
                     type:this.projectData.type
                   });
 
@@ -59,8 +58,6 @@ export class AssignmentCreatePage {
     });
     
     console.log(responseKey);
-    this.navCtrl.push(AssignmentDetailsPage,{
-      projectData: this.projectData
-    });
+    this.navCtrl.push(Assignment);
   }
 }

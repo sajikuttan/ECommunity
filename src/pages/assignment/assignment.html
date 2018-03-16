@@ -12,7 +12,7 @@
     <ion-item *ngFor="let assignment of assignmentList;let i = index;">
       <ion-grid>
         <ion-row>
-          <ion-col col-8 (click)="goToAssignmentDetails(assignment.key)">
+          <ion-col text-wrap col-8 (click)="goToAssignmentDetails(assignment.key)">
             <h1>{{assignment.name}}</h1>
             <p>{{assignment.description}}</p>
           </ion-col>

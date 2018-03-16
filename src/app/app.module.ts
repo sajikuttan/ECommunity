@@ -38,7 +38,7 @@ import { AssignmentDetailsPage } from '../pages/assignment-details/assignment-de
 import { Group } from '../pages/group/group';
 import { SettingsPage } from '../pages/settings/settings';
 import { AddMembersPage } from '../pages/add-members/add-members';
-
+// import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 //pipes packages
 import { Data } from '../pipes/data';
 
@@ -78,6 +78,7 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     AssignmentDetailsPage,
     ProjectListPage,
     AddMembersPage
+    // ResetPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -110,6 +111,7 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     AssignmentDetailsPage,
     ProjectListPage,
     AddMembersPage
+    // ResetPasswordPage
   ],
   providers: [
     StatusBar,

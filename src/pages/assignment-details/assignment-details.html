@@ -12,9 +12,9 @@
         <ion-segment-button value="details">
           Details
         </ion-segment-button>
-        <ion-segment-button value="requirements">
+        <!-- <ion-segment-button value="requirements">
           Requiremens
-        </ion-segment-button>
+        </ion-segment-button> -->
         <ion-segment-button value="members">
           Members
         </ion-segment-button>
@@ -30,11 +30,11 @@
           {{projectDetails.description}}
         </p>
       </ion-list>
-      <ion-list *ngSwitchCase="'requirements'">
+      <!-- <ion-list *ngSwitchCase="'requirements'">
         <p>
             {{projectDetails.requirements}}
         </p>
-      </ion-list>
+      </ion-list> -->
       <ion-list *ngSwitchCase="'members'">
         <ion-list>
             <ion-item *ngFor="let member of projectMembers;">
