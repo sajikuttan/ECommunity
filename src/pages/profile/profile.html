@@ -18,26 +18,27 @@
 	<div class="list card">
 		<ion-grid>
 			<ion-row>
-				<ion-col col-4>
+				<ion-col col-6>
 					<ion-card (click)="viewFriends()">
 						<h1>0</h1>
 						<h4>Friends</h4>
 					</ion-card>
 				</ion-col>
-				<ion-col col-4>
+				<ion-col col-6>
 					<ion-card (click)="viewProjects()">
 						<h1>0</h1>
 						<h4>Projects</h4>
 					</ion-card>
 				</ion-col>
-				<ion-col col-4>
-					<ion-card (click)="viewTechnology()">
-						<h1>0</h1>
-						<h4>Technology</h4>
-					</ion-card>
-				</ion-col>
 			</ion-row>
 		</ion-grid>
+	</div>
+	<div class="list card">
+		<h1>Skills</h1>
+		<p>{{skills}}</p>
+		<div>
+			<button ion-button *ngIf="skillDisable" (click)="addSkill()" block>Add Skill</button>
+		</div>
 	</div>
 	<div class="list card">
 		<div [ngSwitch]="template_identifier">

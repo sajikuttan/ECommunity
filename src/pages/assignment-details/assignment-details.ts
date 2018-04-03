@@ -25,6 +25,7 @@ export class AssignmentDetailsPage {
   projectDetails;
   key:any;
   members:any;
+  isDelete=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
     this.key = navParams.get('key');
     this.activeTab = "details";
@@ -112,11 +113,14 @@ export class AssignmentDetailsPage {
       });
     });
     console.log(tmp);
+    // value = this.projectMembers.find(data => data.key == memberkey);
+    // this.projectMembers.remove(value);
     value = tmp.find(data => data.memberKey == memberkey);
     console.log(value);
     let key = value['key'];
     console.log(key);
     firebase.database().ref('ProjectMembers/'+key).remove();
+    this.isDelete = true;
   }
   addMemmberToProject(key){
     firebase.database().ref('ProjectMembers')

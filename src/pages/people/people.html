@@ -22,7 +22,7 @@
         <ion-item *ngFor="let people of peopleList;">
           <ion-grid>
             <ion-row>
-              <ion-col col-8 (click)="viewProfile(people.email)">
+              <ion-col col-8 (click)="viewProfile(people.email,people.key)">
                 <span >{{people.email}}</span>
               </ion-col>
               <ion-col col-4>

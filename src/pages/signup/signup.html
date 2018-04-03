@@ -1,6 +1,15 @@
 <ion-content padding class="auth-page">
-  <img src="http://placehold.it/300x150" alt="Banner for the signup page" />
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+      <ion-item [class.invalid]="!signupForm.controls.name.valid && signupForm.controls.name.touched"
+      [class.valid]="signupForm.controls.name.valid && signupForm.controls.name.touched">
+      <ion-label stacked>Username</ion-label>
+      <ion-input formControlName="name" type="text" placeholder="Your Username">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.name.valid
+      && signupForm.controls.name.touched">
+      <p>Please enter a Username.</p>
+    </ion-item>
     <ion-item [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.touched"
       [class.valid]="signupForm.controls.email.valid && signupForm.controls.email.touched">
       <ion-label stacked>Email</ion-label>

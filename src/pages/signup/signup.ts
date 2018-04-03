@@ -32,6 +32,10 @@ export class SignupPage {
     public databaseProvider:DatabaseProvider
   ) {
     this.signupForm = formBuilder.group({
+      name: [
+        '',
+        Validators.compose([Validators.required])
+      ],
       email: [
         '',
         Validators.compose([Validators.required, EmailValidator.isValid])
@@ -55,12 +59,14 @@ export class SignupPage {
       loading.present();
 
       const email = this.signupForm.value.email;
+      const name = this.signupForm.value.name;
       const password = this.signupForm.value.password;
 
       try {
         const signupUser: firebase.User = await this.authProvider.signupUser(
           email,
-          password
+          password,
+          name
         );
         await loading.dismiss();
         signupUser.getToken().then(token => {

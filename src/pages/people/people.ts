@@ -72,11 +72,12 @@ export class People {
       alert.present();
   }
   
-  viewProfile(name){
+  viewProfile(email,key){
     this.navCtrl.push(Profile,{
       profile_viewer : 'addFriend',
       role:2,
-      username:name
+      username:email,
+      key:key
     });
   }
 }

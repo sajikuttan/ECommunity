@@ -21,6 +21,8 @@ export class Friends {
   friend : string;
   searchTerm: string = '';
   ref:any;
+  friendDisable:boolean;
+  public key="";
   public friends = [];
   public requests = [];
 
@@ -32,16 +34,29 @@ export class Friends {
     }else{
       this.friend = "chats";
     }
+    this.generateKey();
     this.getRequests();
     this.getFriends();
   }
 
   ionViewDidLoad() {
   }
+
+  generateKey(){
+    let key = this.navParams.get('key');
+    let currentUserKey = firebase.auth().currentUser.uid;
+    if(key=="" || key == null || key == undefined || key == currentUserKey ){
+      this.key = currentUserKey;
+      this.friendDisable = true;
+    }else{
+      this.key = key;
+      this.friendDisable = false;
+    }
+  }
+
   async getRequests(){
-    let uid = firebase.auth().currentUser.uid;
     try{
-      await firebase.database().ref('userProfile/'+uid+'/friends/')
+      await firebase.database().ref('userProfile/'+this.key+'/friends/')
       .orderByChild('status')
       .equalTo(1)
       .on('child_added',data=>{
@@ -60,9 +75,8 @@ export class Friends {
     }
   }
   async getFriends(){
-    let uid = firebase.auth().currentUser.uid;
     try{
-      await firebase.database().ref('userProfile/'+uid+'/friends/')
+      await firebase.database().ref('userProfile/'+this.key+'/friends/')
       .orderByChild('status')
       .equalTo(2)
       .on('child_added',data=>{
@@ -89,8 +103,9 @@ export class Friends {
       key:key
     });
   }
-  viewProfile(){
+  viewProfile(email,key){
     this.navCtrl.push(Profile,{
+      key:key,
       profile_viewer: 'sendMessage',
       role:1
     });

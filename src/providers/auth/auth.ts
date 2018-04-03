@@ -11,7 +11,7 @@ export class AuthProvider {
     
   }
 
-  async signupUser(email: string, password: string) {
+  async signupUser(email: string, password: string,name: string) {
     try {
       const newUser: firebase.User = await firebase
         .auth()
@@ -19,8 +19,11 @@ export class AuthProvider {
 
       await firebase
         .database()
-        .ref(`/userProfile/${newUser.uid}/email`)
-        .set(email);
+        .ref(`/userProfile/${newUser.uid}/`)
+        .set({
+          email,
+          name
+        });
       var uid = firebase.auth().currentUser.uid;
       console.log(uid);
       

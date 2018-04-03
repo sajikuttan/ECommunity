@@ -17,7 +17,7 @@
             <p>{{assignment.description}}</p>
           </ion-col>
           <ion-col col-4>
-            <button ion-button (click)="openChat(assignment.key,assignment.name)">
+            <button ion-button *ngIf="userDisable" (click)="openChat(assignment.key,assignment.name)">
               <span>Chat</span><span><ion-icon name="chatboxes"></ion-icon></span>
             </button>
           </ion-col>
@@ -26,7 +26,7 @@
     </ion-item>
   </ion-list>
     <ion-fab right bottom>
-      <button ion-button class="round" round color="danger" (click)="createCustomProject()">
+      <button ion-button *ngIf="userDisable" class="round" round color="danger" (click)="createCustomProject()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-fab>
