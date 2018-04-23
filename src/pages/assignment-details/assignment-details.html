@@ -44,7 +44,7 @@
                     <span >{{member.email}}</span>
                   </ion-col>
                   <ion-col col-4>
-                      <button ion-button [ngClass]="(isDelete) ? 'hide' : 'show'" (click)="removeFromProject(member.key,projectDetails.key)">Remove</button>
+                      <button *ngIf="isAdmin" ion-button (click)="removeFromProject(member.key,projectDetails.key,$event)">Remove</button>
                     </ion-col>
                 </ion-row>
               </ion-grid>
@@ -65,7 +65,7 @@
                   <span >{{member.email}}</span>
                 </ion-col>
                 <ion-col col-4>
-                    <button [ngClass]="(isDelete) ? 'hide' : 'show'" ion-button (click)="addMemmberToProject(member.key)">Add</button>
+                    <button  *ngIf="isAdmin" [ngClass]="(isDelete) ? 'hide' : 'show'" ion-button (click)="addMemmberToProject(member.key)">Add</button>
                   </ion-col>
               </ion-row>
             </ion-grid>

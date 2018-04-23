@@ -74,7 +74,7 @@ export class Assignment {
     }
   }
   openChat(key,name){
-    this.navCtrl.push(Chats,{
+    this.navCtrl.setRoot(Chats,{
       key:key,
       chatName:name,
       isGroup:true

@@ -14,7 +14,7 @@
         <ion-row>
           <ion-col text-wrap col-8 (click)="goToAssignmentDetails(assignment.key)">
             <h1>{{assignment.name}}</h1>
-            <p>{{assignment.description}}</p>
+            <p>{{assignment.description.substr(0,100)}}</p>
           </ion-col>
           <ion-col col-4>
             <button ion-button *ngIf="userDisable" (click)="openChat(assignment.key,assignment.name)">

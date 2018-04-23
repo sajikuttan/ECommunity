@@ -51,6 +51,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import { ProjectListPage } from '../pages/project-list/project-list';
 import { CoursesProvider } from '../providers/courses/courses';
 import { FriendConnectProvider } from '../providers/friend-connect/friend-connect';
+import { LoadingModalComponent } from '../components/loading-modal/loading-modal';
 
 
 
@@ -77,7 +78,8 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     AssignmentCreatePage,
     AssignmentDetailsPage,
     ProjectListPage,
-    AddMembersPage
+    AddMembersPage,
+    LoadingModalComponent
     // ResetPasswordPage
   ],
   imports: [
@@ -110,7 +112,8 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     AssignmentCreatePage,
     AssignmentDetailsPage,
     ProjectListPage,
-    AddMembersPage
+    AddMembersPage,
+    LoadingModalComponent
     // ResetPasswordPage
   ],
   providers: [
@@ -131,7 +134,8 @@ import { FriendConnectProvider } from '../providers/friend-connect/friend-connec
     AuthProvider,
     DatabaseProvider,
     CoursesProvider,
-    FriendConnectProvider
+    FriendConnectProvider,
+    LoadingModalComponent
   ]
 })
 export class AppModule {}

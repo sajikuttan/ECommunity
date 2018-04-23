@@ -26,6 +26,7 @@ export class AssignmentDetailsPage {
   key:any;
   members:any;
   isDelete=false;
+  isAdmin:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
     this.key = navParams.get('key');
     this.activeTab = "details";
@@ -36,7 +37,7 @@ export class AssignmentDetailsPage {
   }
 
   ionViewDidLoad() {
-    
+    let uid = firebase.auth().currentUser.uid;
     this.ref = firebase.database().ref('Project/'+this.key);
     this.ref.on('value',data => {
       console.log(data.key);
@@ -68,10 +69,17 @@ export class AssignmentDetailsPage {
         });
       });
     });
-    
+    firebase.database().ref('ProjectMembers').orderByChild('memberKey').equalTo(uid)
+    .once('child_added',data=>{
+      let isAdmin = data.val().isAdmin;
+      if(isAdmin){
+        this.isAdmin = true;
+      }else{
+        this.isAdmin = false;
+      }
+    });
   }
   addMembers(){
-    console.log(this.key);
     let profileModal = this.modalCtrl.create(AddMembersPage, { addMeber: true });
     
     profileModal.onDidDismiss(data => {
@@ -81,7 +89,8 @@ export class AssignmentDetailsPage {
       data.forEach(data =>{
         this.ref.push({
           projectKey:this.key,
-          memberKey:data.key
+          memberKey:data.key,
+          isAdmin:0
         });
       });
     });
@@ -102,7 +111,8 @@ export class AssignmentDetailsPage {
     });
     console.log(this.projectRequestMembers);
   }
-  removeFromProject(memberkey,projectKey){
+  removeFromProject(memberkey,projectKey,event){
+
     let tmp = [];
     let value =[];
     firebase.database().ref('ProjectMembers').orderByChild('projectKey').equalTo(projectKey).on('child_added',data=>{
@@ -121,12 +131,16 @@ export class AssignmentDetailsPage {
     console.log(key);
     firebase.database().ref('ProjectMembers/'+key).remove();
     this.isDelete = true;
+    this.navCtrl.setRoot(this.navCtrl.getActive().component,{
+      key:this.key
+    });
   }
   addMemmberToProject(key){
     firebase.database().ref('ProjectMembers')
     .push({
       projectKey:this.key,
-      memberKey:key
+      memberKey:key,
+      isAdmin:0
     });
     firebase.database().ref('Requests/'+this.key)
     .orderByChild('uid')

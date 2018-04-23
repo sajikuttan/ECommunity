@@ -24,7 +24,6 @@ import { firebaseConfig } from './credentials';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  // make HelloIonicPage the root (or first) page
   selectedTheme: String;
   rootPage: HelloIonicPage;
   loader: any;
@@ -72,7 +71,7 @@ export class MyApp {
       { title: 'Friends', component: Friends },
       { title: 'Workgroup', component: Assignment },
       { title: 'Profile', component: Profile },
-      { title: 'Login', component: LoginPage }
+      { title: 'Logout', component: LoginPage }
     ];
   }
 
@@ -89,6 +88,14 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  setUsername(){
+    let key = firebase.auth().currentUser.uid;
+    let ref = firebase.database().ref('userProfile/'+key);
+    ref.once('value',data=>{
+      MyApp.userName = data.val().email;
+    });
   }
 
   presentLoading() {

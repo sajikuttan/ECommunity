@@ -9,6 +9,7 @@ import { MyApp } from '../../app/app.component';
 import firebase from 'firebase';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 /**
  * Generated class for the Profile page.
  *
@@ -29,14 +30,14 @@ export class Profile {
   skills:string;
   skillDisable:boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
-    this.username = navParams.get('username');
-    this.key = (navParams.get('key')!=null)?navParams.get('key'):firebase.auth().currentUser.uid;
-    
-    console.log(navParams.get('role'));
-    if(navParams.get('role')== null){
-      this.username= MyApp.userName;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public toastCtrl: ToastController) {
+    let username = navParams.get('username');
+    if(username == null || username == "" || username == undefined){
+      this.username = firebase.auth().currentUser.email;
+    }else{
+      this.username = username;
     }
+    this.key = (navParams.get('key')!=null)?navParams.get('key'):firebase.auth().currentUser.uid;
   	
   	this.template_identifier = navParams.get('profile_viewer');
     if(this.template_identifier==null){
@@ -111,16 +112,20 @@ export class Profile {
         {
           text: 'Save',
           handler: data => {
-            console.log(data.skill);
-            let uid = firebase.auth().currentUser.uid;
-            firebase.database().ref('Skills/'+uid)
-            .set({
-              skills:data.skill
-            });
-            let alert = this.alertCtrl.create({
-              title: 'Skills added Successfully',
-              buttons: ['OK']
-            });
+            if(data.skill){
+              let uid = firebase.auth().currentUser.uid;
+              firebase.database().ref('Skills/'+uid)
+              .set({
+                skills:data.skill
+              });
+              let alert = this.alertCtrl.create({
+                title: 'Skills added Successfully',
+                buttons: ['OK']
+              });
+            }else{
+              this.showErrorToast('Please enter Skills');
+            }
+            
             alert.present();
             this.viewSkills();
           }
@@ -131,11 +136,26 @@ export class Profile {
   }
   sendMessage(friend: string){
     this.navCtrl.push(Chats,{
-      chatName:friend
+      chatName: this.username,
+      key:this.key
     });
   }
   connectFriends(){
   	this.navCtrl.push(People);
+  }
+  showErrorToast(data: any) {
+    
+    let toast = this.toastCtrl.create({
+      message: data,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
 }

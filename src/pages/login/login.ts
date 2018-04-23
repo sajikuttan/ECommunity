@@ -16,6 +16,7 @@ import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase/app';
 import { DatabaseProvider } from '../../providers/database/database';
 import { MyApp } from '../../app/app.component';
+import { MenuController } from 'ionic-angular/components/app/menu-controller';
 
 
 @IonicPage()
@@ -32,7 +33,8 @@ export class LoginPage {
     public authProvider: AuthProvider,
     formBuilder: FormBuilder,
     private googlePlus: GooglePlus,
-    public databaseProvider:DatabaseProvider
+    public databaseProvider:DatabaseProvider,
+    private menu:MenuController
   ) {
     this.loginForm = formBuilder.group({
       email: [

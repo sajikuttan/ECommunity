@@ -7,23 +7,39 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <form (ngSubmit)="regiterForm()">
-    <ion-item>
-      <ion-label stacked color="primary">Project Name</ion-label>
-      <ion-input type="text" [(ngModel)]="projectData.name" name="name" requird></ion-input>
+  <form [formGroup]="createFrom" (ngSubmit)="regiterForm()" novalidate>
+    <ion-item [class.invalid]="!createFrom.controls.name.valid &&createFrom.controls.name.touched"
+      [class.valid]="createFrom.controls.name.valid && createFrom.controls.name.touched">
+        <ion-label stacked>Project Name</ion-label>
+        <ion-input formControlName="name" type="text" placeholder="Project Name">
+        </ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="error-message" *ngIf="!createFrom.controls.name.valid
+      && createFrom.controls.name.touched">
+      <p>Please enter Project Name.</p>
+    </ion-item>
+    <ion-item [class.invalid]="!createFrom.controls.long_description.valid &&createFrom.controls.long_description.touched"
+    [class.valid]="createFrom.controls.long_description.valid && createFrom.controls.long_description.touched">
       <ion-label stacked color="primary">Descrition</ion-label>
-      <ion-textarea [(ngModel)]="projectData.long_description" name="long_description" rows="6" required></ion-textarea>
+      <ion-textarea formControlName="long_description"  name="long_description" rows="6" required></ion-textarea>
     </ion-item>
-    <ion-item>
+    <ion-item class="error-message" *ngIf="!createFrom.controls.long_description.valid
+      && createFrom.controls.long_description.touched">
+      <p>Please enter Project Description.</p>
+    </ion-item>
+    <ion-item [class.invalid]="!createFrom.controls.type.valid &&createFrom.controls.type.touched"
+    [class.valid]="createFrom.controls.type.valid && createFrom.controls.type.touched">
         <ion-label stacked color="primary">Project Type</ion-label>
-        <ion-select [(ngModel)]="projectData.type" name="type">
+        <ion-select formControlName="type">
           <ion-option value="Website App Project">Website App Project</ion-option>
           <ion-option value="Mobile App Project">Mobile App Project</ion-option>
           <ion-option value="Desktop App Project">Desktop App Project</ion-option>
         </ion-select>
     </ion-item>
-    <button ion-button type="submit" block>Add</button>
+    <ion-item class="error-message" *ngIf="!createFrom.controls.type.valid
+      && createFrom.controls.type.touched">
+      <p>Please select any Option.</p>
+    </ion-item>
+    <button ion-button type="submit" block  [disabled]="!createFrom.valid">Add</button>
   </form>
 </ion-content>

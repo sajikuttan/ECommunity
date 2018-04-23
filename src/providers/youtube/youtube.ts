@@ -12,7 +12,10 @@ export class YoutubeProvider {
   channel_arr:JSON;
   video_id_array =[];
   constructor(public http: HttpClient) {
-    this.getVideoChannel();
+    
+  }
+  setYoutubeId(yid){
+    this.getVideos(yid);
   }
   getVideoChannel(){
     var url ="https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=thenewboston&key=AIzaSyABOMA1sECLaBejkrK2MjOgsBGI2sZd5fk";
@@ -20,6 +23,7 @@ export class YoutubeProvider {
     .map(res => res as JSON)
     .subscribe(data => {
       for (var key in  data['items']) {
+        console.log(data['items']);
         if ( data['items'].hasOwnProperty(key)) {
           var yid =  data['items'][key].contentDetails.relatedPlaylists.uploads;
           console.log(yid);

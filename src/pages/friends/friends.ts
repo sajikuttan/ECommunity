@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Chats } from '../chat/chat';
 import { Profile } from '../profile/profile';
 import { People } from '../people/people';
 import firebase from 'firebase';
 import { FriendConnectProvider } from '../../providers/friend-connect/friend-connect';
+
 /**
  * Generated class for the Friends page.
  *
@@ -26,7 +27,7 @@ export class Friends {
   public friends = [];
   public requests = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public friendConnect:FriendConnectProvider) {   
+  constructor(public navCtrl: NavController, public navParams: NavParams,public friendConnect:FriendConnectProvider,private toastCtrl: ToastController) {   
     this.ref = firebase.database().ref('userProfile'); 
     this.activeTab = "friends";
     if(this.navParams.get('param1') != null){
@@ -41,7 +42,19 @@ export class Friends {
 
   ionViewDidLoad() {
   }
-
+  setFilteredItems() {
+    if(this.searchTerm != ""){
+      this.friends = this.filterFriends(this.searchTerm);
+    }else{
+      this.friends =[];
+      this.getFriends();
+    }
+  }
+  filterFriends(searchTerm){
+    return  this.friends.filter((item) => {
+        return item.email.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
   generateKey(){
     let key = this.navParams.get('key');
     let currentUserKey = firebase.auth().currentUser.uid;
@@ -89,7 +102,7 @@ export class Friends {
             email:data.val().email
           });
         });
-      });      
+      }); 
     }catch(err){
       console.log(err);
     }
@@ -107,10 +120,28 @@ export class Friends {
     this.navCtrl.push(Profile,{
       key:key,
       profile_viewer: 'sendMessage',
-      role:1
+      role:1,
+      username:email
     });
   }
   acceptRequest(key){
     this.friendConnect.acceptRequest(key);
+    this.presentToast();
+    this.navCtrl.setRoot(this.navCtrl.getActive().component,{
+      key:this.key
+    });
+  }
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Friend was added successfully',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 }
